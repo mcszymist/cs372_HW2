@@ -1,11 +1,11 @@
 #define CATCH_CONFIG_MAIN  // This tells Catch to provide a main() - only do this in one cpp file
 #include <memory>
-std::unique_ptr;
+using std::unique_ptr;
 #include "catch.hpp"
 #include "CPS.h"
 
 SECTION( "Base Class: Cursor", "[base]" ) {
-    unique_ptr<Shape> shape(new Shape());        //check
+    unique_ptr<Shape> shape(new Shape());
         
     TEST_CASE("Default Cursor: "){
         REQUIRE(shape->getLocX()==0);
