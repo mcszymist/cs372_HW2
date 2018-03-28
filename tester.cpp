@@ -42,7 +42,7 @@ SECTION("Simple Shape Construction: Rectangle", "[shapes]"){
     TEST_CASE( "Rectangle: 5,10") {
         unique_ptr<Shape> shape(new Rectangle(5,10));
         REQUIRE(shape->getSize()==10);
-        REQUIRE(shape->getPostscript()=="");
+        REQUIRE(shape->getPostscript()=="gsave 5 5 translate newpath -2.5 -5 moveto 2.5 -5 lineto 2.5 5 lineto -2.5 5 lineto closepath stroke grestore");
     }
 }
 SECTION("Simple Shape Construction: Spacer", "[shapes]"){
