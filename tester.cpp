@@ -56,7 +56,7 @@ SECTION("Simple Shape Construction: Square", "[shapes]"){
     TEST_CASE( "Square: 10") {
         unique_ptr<Shape> shape(new Square(10));
         REQUIRE(shape->getSize()==10);
-        REQUIRE(shape->getPostscript()=="");
+        REQUIRE(shape->getPostscript()=="gsave 5 5 translate newpath -5 -5 moveto 5 -5 lineto 5 5 lineto -5 5 lineto closepath stroke grestore");
     }
 }
 SECTION("Simple Shape Construction: Triangle", "[shapes]"){
