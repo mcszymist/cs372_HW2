@@ -27,7 +27,7 @@ SECTION("Simple Shape Construction: Circle", "[shapes]"){
     TEST_CASE("Circle 10"){
         unique_ptr<Shape> shape(new Circle(10));
         REQUIRE(shape->getSize()==10);
-        REQUIRE(shape->getPostscript()=="");
+        REQUIRE(shape->getPostscript()=="gsave 10 10 translate 0 0 10 0 360 arc stroke grestore");
 }
 
 SECTION("Simple Shape Construction: Polygon", "[shapes]"){
