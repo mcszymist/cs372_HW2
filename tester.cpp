@@ -30,13 +30,12 @@ SECTION("Simple Shape Construction: Circle", "[shapes]"){
         REQUIRE(shape->getSize()==10);
         REQUIRE(shape->getPostscript()=="gsave 10 10 translate 0 0 10 0 360 arc stroke grestore");
 }
-//Polygon will need more work on postscript requires rotation for other N-sides
 SECTION("Simple Shape Construction: Polygon", "[shapes]"){
     TEST_CASE( "Polygon 6,10") {
         unique_ptr<Shape> shape(new Polygon(5,10));
-        shape->setCusor(5,5);
+        shape->setCusor(100,100);
         REQUIRE(shape->getSize()==10);
-        REQUIRE(shape->getPostscript()=="gsave /S 5 def /H 100 def /A 360 S div def 100 100 translate H 0 moveto S{ A cos H mul A sin H mul lineto /A A 360 S div add def } repeat closepath stroke grestore");
+        REQUIRE(shape->getPostscript()=="gsave /S 5 def /H 100 def /A 360 S div def 100 100 translate A cos H mul H sub A sin H mul 0 sub atan rotate -90 rotate H 0 moveto S{ A cos H mul A sin H mul lineto /A A 360 S div add def } repeat closepath stroke grestore");
     }
 }
 
