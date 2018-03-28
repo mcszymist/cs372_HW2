@@ -31,11 +31,11 @@ SECTION("Simple Shape Construction: Circle", "[shapes]"){
         REQUIRE(shape->getPostscript()=="gsave 10 10 translate 0 0 10 0 360 arc stroke grestore");
 }
 SECTION("Simple Shape Construction: Polygon", "[shapes]"){
-    TEST_CASE( "Polygon 6,10") {
+    TEST_CASE( "Polygon 5,100") {
         unique_ptr<Shape> shape(new Polygon(5,10));
         shape->setCusor(100,100);
         REQUIRE(shape->getSize()==10);
-        REQUIRE(shape->getPostscript()=="gsave /S 5 def /H 100 def /A 360 S div def 100 100 translate A cos H mul H sub A sin H mul 0 sub atan rotate -90 rotate H 0 moveto S{ A cos H mul A sin H mul lineto /A A 360 S div add def } repeat closepath stroke grestore");
+        REQUIRE(shape->getPostscript()=="gsave 100 100 translate /S 5 def /H 100 def /A 360 S div def A cos H mul H sub A sin H mul 0 sub atan rotate -90 rotate H 0 moveto S{ A cos H mul A sin H mul lineto /A A 360 S div add def } repeat closepath stroke grestore");
     }
 }
 
@@ -70,13 +70,26 @@ SECTION("Simple Shape Construction: Triangle", "[shapes]"){
         REQUIRE(shape->getPostscript()=="gsave 5 5 translate newpath -5 -5 moveto 5 -5 lineto 0 5 lineto closepath stroke grestore");
     }
 }
-SECTION("Compound Shape Construction: Rotation Square", "[compoundShapes]"){
-    TEST_CASE( "Rotation: ") {
-        unique_ptr<Shape> shape(new Square(10));
+SECTION("Compound Shape Construction: Rotation", "[compoundShapes]"){
+    TEST_CASE( "Rotation: Triangle 90") {
+        unique_ptr<Shape> shape(new Triangle(10));
+        shape->setCusor(5,5);
+        Rotation angle(90);
+        unique_ptr<Shape> rotated(new Rotated(shape, angle);
+        REQUIRE(rotated->getPostScript()=="gsave 5 5 translate 90 rotate newpath -5 -5 moveto 5 -5 lineto 0 5 lineto closepath stroke grestore");
+    }
+    TEST_CASE( "Rotation: Triangle 180") {
+        unique_ptr<Shape> shape(new Triangle(10));
         shape->setCusor(5,5);
         Rotation angle(180);
-        Rotated(shape, angle);
-        //check
-        
+        unique_ptr<Shape> rotated(new Rotated(shape, angle);
+        REQUIRE(rotated->getPostScript()=="gsave 5 5 translate 180 rotate newpath -5 -5 moveto 5 -5 lineto 0 5 lineto closepath stroke grestore");
+    }
+    TEST_CASE( "Rotation: Triangle 270") {
+        unique_ptr<Shape> shape(new Triangle(10));
+        shape->setCusor(5,5);
+        Rotation angle(270);
+        unique_ptr<Shape> rotated(new Rotated(shape, angle);
+        REQUIRE(rotated->getPostScript()=="gsave 5 5 translate 270 rotate newpath -5 -5 moveto 5 -5 lineto 0 5 lineto closepath stroke grestore");
     }
 }
