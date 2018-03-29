@@ -1,4 +1,5 @@
-#define CATCH_CONFIG_MAIN  // This tells Catch to provide a main() - only do this in one cpp file
+#define CATCH_CONFIG_FAST_COMPILE
+// Disable some features for faster compile
 #include <memory>
 using std::unique_ptr;
 #include "catch.hpp"
