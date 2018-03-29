@@ -1,3 +1,6 @@
+#ifndef SHAPES_H
+#define SHAPES_H
+
 #include "string"
 using std::string;
 
@@ -20,3 +23,4 @@ public:
 class Rotation{
     
 };
+#endif

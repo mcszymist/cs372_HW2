@@ -1,3 +1,6 @@
+#ifndef SIMPLESHAPES_H
+#define SIMPLESHAPES_H
+
 #include <string>
 using std::string;
 #include "Shape.h"
@@ -53,3 +56,5 @@ public:
     }
     string getPostscript() override;
 };
+
+#endif

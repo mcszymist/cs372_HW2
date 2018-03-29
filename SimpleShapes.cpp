@@ -17,4 +17,6 @@ string Rectangle::getPostscript(){
 string Spacer::getPostscript(){
     return "";
 }
-
+string Polygon::getPostscript(){
+    return "";
+}

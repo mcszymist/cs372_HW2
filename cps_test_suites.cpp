@@ -1,7 +1,9 @@
+
 #define CATCH_CONFIG_FAST_COMPILE
 #include <memory>
 using std::unique_ptr;
 #include "catch.hpp"
+#include "Shape.h"
 #include "SimpleShapes.h"
 
 //Not sure how we want to do coords like this or should we just undle in the constructor.
