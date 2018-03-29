@@ -1,8 +1,9 @@
     #include "Shape.h"
+
     void Shape::setHeight(const int &h){
         height = h;
     }
-    void Shape::setHeight(const int &w){
+    void Shape::setWidth(const int &w){
         width = w;
     }
     int Shape::getLocX(){
