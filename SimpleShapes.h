@@ -1,7 +1,12 @@
 #include "Shape.h"
 
 class Circle : public Shape{
-
+private:
+    int radius;
+public:
+    Circle(int h) : radius(h/2){
+        setHeight(h);
+    }
 };
 class Triangle : public Shape{
 
