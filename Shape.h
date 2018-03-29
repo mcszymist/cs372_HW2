@@ -9,6 +9,7 @@ private:
     int xPos,yPos,height,width;
 public:
     virtual string getPostscript() = 0;
+    string finalize();
     void setHeight(const int &h);
     void setWidth(const int &w);
     int getLocX();

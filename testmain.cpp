@@ -1,5 +1,5 @@
 // Project 2 
-// Duane Shaffer, Samuel Grenon, Corey Gray, mcszymist
+// Duane Shaffer, Samuel Grenon, Corey Gray, Tyler Roberts
 // Spring 2018
 //
 // For CS 372 Spring 2018

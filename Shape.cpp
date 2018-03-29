@@ -1,11 +1,23 @@
     #include <string>
     using std::string;
+    #include <sstream>
+    using std::stringstream;
     #include "Shape.h"
     void Shape::addLocation(string &s){
+        stringstream ss;
+        ss << xPos << " " << yPos << " translate " << s;
+        s = ss.str();
         return;
     }
     void Shape::saveRestore(string &s){
+        s = "gsave " + s + " grestore";
         return;
+    }
+    string Shape::finalize(){
+        auto s = getPostscript();
+        addLocation(s);
+        saveRestore(s);
+        return s;
     }
     void Shape::setHeight(const int &h){
         height = h;
@@ -14,17 +26,18 @@
         width = w;
     }
     int Shape::getLocX(){
-        return 0;
+        return xPos;
     }
     int Shape::getLocY(){
-        return 0;
+        return yPos;
     }
     int Shape::getHeight(){
-        return 0;
+        return height;
     }
     int Shape::getWidth(){
-        return 0;
+        return width;
     }
     void Shape::setCursor(const int &x,const int &y){
-        return;
+        xPos = x;
+        yPos = y;
     }

@@ -1,9 +1,13 @@
 #include <string>
 using std::string;
+#include <sstream>
+using std::stringstream;
 #include "SimpleShapes.h"
 
 string Circle::getPostscript(){
-    return "";
+    stringstream ss;
+    ss << "0 0 " << radius << " 0 360 arc stroke";
+    return ss.str();
 }
 string Triangle::getPostscript(){
     return "";

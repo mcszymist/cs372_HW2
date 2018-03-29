@@ -7,10 +7,10 @@ using std::string;
 
 class Circle : public Shape{
 private:
-    int radius;
+    double radius;
 public:
-    Circle(int h) : radius(h/2){
-        setHeight(h);
+    Circle(double r) : radius(r){
+        setHeight(r*2);
     }
     string getPostscript() override;
 };

@@ -10,8 +10,9 @@ using std::unique_ptr;
 TEST_CASE("Simple Shape Construction: Circle", "[shapes]"){
     unique_ptr<Shape> shape(new Circle(10));
     shape->setCursor(10,10);
-    REQUIRE(shape->getHeight()==10);
-    REQUIRE(shape->getPostscript()=="gsave 10 10 translate 0 0 10 0 360 arc stroke grestore");
+    REQUIRE(shape->getHeight()==20);
+    REQUIRE(shape->getPostscript()=="0 0 10 0 360 arc stroke");
+    REQUIRE(shape->finalize()=="gsave 10 10 translate 0 0 10 0 360 arc stroke grestore");
 }
 TEST_CASE("Simple Shape Construction: Polygon", "[shapes]"){
     unique_ptr<Shape> shape(new Polygon(5,10));
