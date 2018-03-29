@@ -1,9 +1,9 @@
 #define CATCH_CONFIG_FAST_COMPILE
-// Disable some features for faster compile
 #include <memory>
 using std::unique_ptr;
 #include "catch.hpp"
-#include "CPS.h"
+#include "Shape.h"
+#include "SimpleShapes.h"
 
 TEST_CASE( "Base Class: Cursor", "[base]" ) {
     unique_ptr<Shape> shape(new Shape());
