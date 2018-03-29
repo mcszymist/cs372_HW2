@@ -1,0 +1,85 @@
+CXXFLAGS=-std=c++14
+CMP=g++ -std=c++14 -Wall
+
+BUILD_DIR=build
+COMPLEXSHAPES = ComplexShapes
+CPS = cps
+TESTS = cps_test_suites
+MAIN = main
+SHAPE = shape
+SIMPLESHAPES = SimpleShapes
+TESTMAIN = testmain
+UNIQUESHAPES = UniqueShapes
+
+
+COMPLEXSHAPES_OBJ=$(BUILD_DIR)/$(COMPLEXSHAPES).o
+CPS_OBJ=$(BUILD_DIR)/$(CPS).o
+MAIN_OBJ=$(BUILD_DIR)/$(MAIN).O
+SHAPE_OBJ=$(BUILD_DIR)/$(SHAPE).o
+SIMPLESHAPES_OBJ=$(BUILD_DIR)/$(SIMPLESHAPES).o
+TESTMAIN_OBJ=$(BUILD_DIR)/$(TESTMAIN).o
+TESTS_OBJ=$(BUILD_DIR)/$(TESTS).o
+UNIQUESHAPES_OBJ=$(BUILD_DIR)/$(UNIQUESHAPES).o
+
+OBJ_FILES=$(SHAPE_OBJ) $(CPS_OBJ) $(SIMPLESHAPES_OBJ) $(COMPLEXSHAPES_OBJ)\
+		  $(UNIQUESHAPES_OBJ)
+
+CPP_FILES=$(CPS).cpp $(SHAPE).cpp $(SIMPLESHAPES).cpp $(COMPLEXSHAPES).cpp \
+		  $(UNIQUESHAPES).cpp
+
+OBJ_FILES_WITH_MAIN=$(OBJ_FILES) $(MAIN).o
+
+OUT_FILE= PS_Translator.out
+
+all: $(OUT_FILE)
+
+$(OUT_FILE): $(OBJ_FILES_WITH_MAIN)
+	$(CMP) -o $(OUT_FILE) $(OBJ_FILES_WITH_MAIN)
+
+$(COMPLEXSHAPES_OBJ): $(COMPLEXSHAPES).cpp
+	$(CMP) -o $(COMPLEXSHAPES_OBJ) -c $(COMPLEXSHAPES).cpp
+
+$(CPS_OBJ): $(CPS).cpp
+	$(CMP) -o $(CPS_OBJ) -c $(CPS).cpp
+
+$(MAIN_OBJ): $(MAIN).cpp
+	$(CMP) -o $(MAIN_OBJ) -c $(MAIN).cpp
+
+$(SHAPE_OBJ): $(SHAPE).cpp
+	$(CMP) -o $(SHAPE_OBJ) -c $(SHAPE).cpp
+
+$(SIMPLESHAPES_OBJ): $(SIMPLESHAPES).cpp
+	$(CMP) -o $(SIMPLESHAPES_OBJ) -c $(SIMPLESHAPES).cpp
+
+$(UNIQUESHAPES_OBJ): $(UNIQUESHAPES).cpp
+	$(CMP) -o $(UNIQUESHAPES_OBJ) -c $(UNIQUESHAPES).cpp
+
+$(TESTMAIN_OBJ).o: $(TESTMAIN).cpp
+	$(CMP) -o $(TESTMAIN_OBJ).o -c $(TESTMAIN).cpp
+
+$(TESTS_OBJ).o: $(TESTS).cpp
+	$(CMP) -o $(TESTS_OBJ).o -c $(TESTS).cpp
+
+
+#For making and running tests
+
+TEST_OUT_FILE=tests.out
+
+TEST_OBJ_FILES=$(TESTMAIN_OBJ) $(OBJ_FILES) $(TESTS_OBJ)
+
+tests: $(TEST_OUT_FILE)
+
+$(TEST_OUT_FILE): $(TEST_OBJ_FILES)
+	$(CMP) -o $(TEST_OUT_FILE) $(TEST_OBJ_FILES)
+
+tests-run: tests
+	./$(TEST_OUT_FILE) $1
+
+run: all
+	./$(OUT_FILE)
+
+clean:
+	rm $(OBJ_FILES) $(MAIN).o *.out
+
+clean-tests:
+	rm $(TESTING_OBJ_FILES)
