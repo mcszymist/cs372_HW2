@@ -2,20 +2,8 @@
 #include <memory>
 using std::unique_ptr;
 #include "catch.hpp"
-#include "Shape.h"
 #include "SimpleShapes.h"
 
-TEST_CASE( "Base Class: Cursor", "[base]" ) {
-    unique_ptr<Shape> shape(new Shape());
-    REQUIRE(shape->getLocX()==0);
-    REQUIRE(shape->getLocY()==0);
-    shape->setCursor(200,200);
-    REQUIRE(shape->getLocX()==200);
-    REQUIRE(shape->getLocY()==200);
-    shape->setCursor(840,700);
-	REQUIRE(shape->getLocX()==840);
-	REQUIRE(shape->getLocY()==600);
-}
 //Not sure how we want to do coords like this or should we just undle in the constructor.
 TEST_CASE("Simple Shape Construction: Circle", "[shapes]"){
     unique_ptr<Shape> shape(new Circle(10));
@@ -54,25 +42,4 @@ TEST_CASE("Simple Shape Construction: Triangle", "[shapes]"){
         REQUIRE(shape->getPostscript()=="gsave 5 5 translate newpath -5 -5 moveto 5 -5 lineto 0 5 lineto closepath stroke grestore");
 }
 
-TEST_CASE("Compound Shape Construction: Rotation 90", "[compoundShapes]") {
-	unique_ptr<Shape> shape(new Triangle(10));
-	shape->setCursor(5, 5);
-	Rotation angle(90);
-	unique_ptr<Shape> rotated(new Rotated(shape, angle);
-	REQUIRE(rotated->getPostScript() == "gsave 5 5 translate 90 rotate newpath -5 -5 moveto 5 -5 lineto 0 5 lineto closepath stroke grestore");
-}
-TEST_CASE( "Rotation: Triangle 180") {
-    unique_ptr<Shape> shape(new Triangle(10));
-    shape->setCursor(5,5);
-    Rotation angle(180);
-    unique_ptr<Shape> rotated(new Rotated(shape, angle);
-    REQUIRE(rotated->getPostScript()=="gsave 5 5 translate 180 rotate newpath -5 -5 moveto 5 -5 lineto 0 5 lineto closepath stroke grestore");
-}
-TEST_CASE( "Rotation: Triangle 270") {
-    unique_ptr<Shape> shape(new Triangle(10));
-    shape->setCursor(5,5);
-    Rotation angle(270);
-    unique_ptr<Shape> rotated(new Rotated(shape, angle);
-    REQUIRE(rotated->getPostScript()=="gsave 5 5 translate 270 rotate newpath -5 -5 moveto 5 -5 lineto 0 5 lineto closepath stroke grestore");
-}
 

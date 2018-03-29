@@ -1,7 +1,11 @@
+#include "string"
+using std::string;
+
 class Shape{
 private:
     int xPos,yPos,height,width;
 public:
+    virtual string getPostscript() = 0;
     void setHeight(const int &h);
     void setWidth(const int &w);
     int getLocX();
@@ -9,6 +13,8 @@ public:
     int getHeight();
     int getWidth();
     void setCursor(const int &x,const int &y);
+    void addLocation(string &s);
+    void saveRestore(string &s);
 };
 
 class Rotation{

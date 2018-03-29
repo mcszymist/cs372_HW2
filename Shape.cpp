@@ -1,5 +1,12 @@
+    #include <string>
+    using std::string;
     #include "Shape.h"
-
+    void Shape::addLocation(string &s){
+        return;
+    }
+    void Shape::saveRestore(string &s){
+        return;
+    }
     void Shape::setHeight(const int &h){
         height = h;
     }
