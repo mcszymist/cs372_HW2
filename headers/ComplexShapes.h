@@ -46,7 +46,7 @@ private:
     shared_ptr<Shape> shape;
 
 public:
-    Scaled(shared_ptr<Shape> s, double _fx, double _fy) : shape(s), fx(_fx), fy(_fy){
+    Scaled(shared_ptr<Shape> s, double _fx, double _fy) : fx(_fx), fy(_fy), shape(s){
         setWidth(s->getWidth());
         setHeight(s->getHeight());
         setCursor(s->getLocX(),s->getLocY());
