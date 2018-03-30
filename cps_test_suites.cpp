@@ -129,10 +129,8 @@ TEST_CASE( "Unique Shape: Circle with Arcs", "[uniqueShapes]") {
     Rotation angle(90);
     // shared_ptr<Shape> rotated(new Rotated(shape, angle));
     REQUIRE(shape->getHeight() == 20);
-    REQUIRE(shape->getPostscript() == "0 0 newpath 0 30 360 { 3 copy pop 72 0 4 
-                                        index arc closepath stroke pop } for");
-    REQUIRE(shape->finalize() == "gsave 10 10 translate 90 rotate 0 0 newpath 0 30 360 { 3 copy pop 72 0 4 
-                                    index arc closepath stroke pop } for stroke grestore");
+    REQUIRE(shape->getPostscript() == "0 0 newpath 0 30 360 { 3 copy pop 72 0 4 index arc closepath stroke pop } for");
+    REQUIRE(shape->finalize() == "gsave 10 10 translate 90 rotate 0 0 newpath 0 30 360 { 3 copy pop 72 0 4 index arc closepath stroke pop } for stroke grestore");
 }
 
 TEST_CASE (" Scaled Shape to certain dimentions" ,"[compoundShapes]") {
