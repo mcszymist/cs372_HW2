@@ -124,11 +124,12 @@ TEST_CASE("Rotation: Multiply times","[compoundShapes]"){
 
 
 TEST_CASE( "Unique Shape: Circle with Arcs", "[uniqueShapes]") {
-    unique_ptr<Shape> shape(new CircleWithArcs(10));
+    shared_ptr<Shape> shape(new CircleWithArcs(10));
     shape->setCursor(10,10);
     Rotation angle(90);
-    // shared_ptr<Shape> rotated(new Rotated(shape, angle));
+    shared_ptr<Shape> rotated(new Rotated(shape, angle));
     REQUIRE(shape->getHeight() == 20);
+<<<<<<< HEAD
     REQUIRE(shape->getPostscript() == "0 0 newpath 0 30 360 { 3 copy pop 72 0 4 index arc closepath stroke pop } for");
     REQUIRE(shape->finalize() == "gsave 10 10 translate 90 rotate 0 0 newpath 0 30 360 { 3 copy pop 72 0 4 index arc closepath stroke pop } for stroke grestore");
 }
@@ -141,6 +142,20 @@ TEST_CASE (" Scaled Shape to certain dimentions" ,"[compoundShapes]") {
     int end = ss.size();
     REQUIRE(scaled1->getPostscript()[end - 6] == 'TTTT');
 }
+=======
+    REQUIRE(rotated->getPostscript() == "90 rotate 0 0 newpath 0 30 60 { 3 copy pop 10 0 4 index arc closepath stroke pop } for");
+    REQUIRE(rotated->finalize() == "gsave 10 10 translate 90 rotate 0 0 newpath 0 30 60 { 3 copy pop 10 0 4 index arc closepath stroke pop } for stroke grestore");
+}
+
+
+TEST_CASE (" Scaled Shape to certain dimentions" ,"[compoundShapes]") {
+    shared_ptr<Shape> shape(new Triangle(10));
+    shape->setCursor(5,5);
+    shared_ptr<Shape> scaled1(new Scaled(shape, 1.0,2.0));
+    REQUIRE(scaled1->getPostscript() == "/W 5 def /H 5 def newpath -W -H moveto W -H lineto 0 H lineto closepath 1.0 2.0 scaled");
+}
+
+>>>>>>> 6044d315c28e47e3297af001623ccc4177877c2a
 
 
 

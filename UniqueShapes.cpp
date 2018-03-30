@@ -4,9 +4,8 @@ using std::string;
 #include <sstream>
 using std::stringstream;
 
-
 string CircleWithArcs::getPostscript(){
     stringstream ss;
-    ss << "/W "<< getWidth()/2.0 <<" def /H "<< getHeight()/2.0 <<" def newpath -W -H moveto W -H lineto W H lineto -W H lineto closepath stroke";
+    ss << "0 0 newpath 0 30 60 { 3 copy pop " << radius << " 0 4 index arc closepath stroke pop } for";
     return ss.str();
 }
