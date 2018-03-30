@@ -125,12 +125,12 @@ TEST_CASE("Rotation: Multiply times","[compoundShapes]"){
 
 TEST_CASE( "Unique Shape: Circle with Arcs", "[uniqueShapes]") {
     unique_ptr<Shape> shape(new CircleWithArcs(10));
-    // shape->setCursor(5,5);
-    // Rotation angle(270);
+    shape->setCursor(10,10);
+    Rotation angle(90);
     // shared_ptr<Shape> rotated(new Rotated(shape, angle));
-    // REQUIRE(rotated->getPostscript()=="270 rotate /W 5 def /H 5 def newpath -W -H moveto W -H lineto 0 H lineto closepath");
-    // REQUIRE(rotated->finalize()=="gsave 5 5 translate 270 rotate /W 5 def /H 5 def newpath -W -H moveto W -H lineto 0 H lineto closepath stroke grestore");
-
+    REQUIRE(shape->getHeight() == 20);
+    REQUIRE(shape->getPostscript() == "0 0 newpath 0 30 360 { 3 copy pop 72 0 4 index arc closepath stroke pop } for");
+    REQUIRE(shape->finalize() == "gsave 10 10 translate 90 rotate 0 0 newpath 0 30 360 { 3 copy pop 72 0 4 index arc closepath stroke pop } for stroke grestore");
 }
 
 TEST_CASE (" Scaled Shape to certain dimentions" ,"[compoundShapes]") {
