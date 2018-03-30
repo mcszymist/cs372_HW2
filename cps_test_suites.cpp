@@ -124,13 +124,13 @@ TEST_CASE("Rotation: Multiply times","[compoundShapes]"){
 
 
 TEST_CASE( "Unique Shape: Circle with Arcs", "[uniqueShapes]") {
-    unique_ptr<Shape> shape(new CircleWithArcs(10));
+    shared_ptr<Shape> shape(new CircleWithArcs(10));
     shape->setCursor(10,10);
     Rotation angle(90);
-    // shared_ptr<Shape> rotated(new Rotated(shape, angle));
+    shared_ptr<Shape> rotated(new Rotated(shape, angle));
     REQUIRE(shape->getHeight() == 20);
-    REQUIRE(shape->getPostscript() == "0 0 newpath 0 30 60 { 3 copy pop 10 0 4 index arc closepath stroke pop } for");
-    REQUIRE(shape->finalize() == "gsave 10 10 translate 90 rotate 0 0 newpath 0 30 60 { 3 copy pop 10 0 4 index arc closepath stroke pop } for stroke grestore");
+    REQUIRE(rotated->getPostscript() == "90 rotate 0 0 newpath 0 30 60 { 3 copy pop 10 0 4 index arc closepath stroke pop } for");
+    REQUIRE(rotated->finalize() == "gsave 10 10 translate 90 rotate 0 0 newpath 0 30 60 { 3 copy pop 10 0 4 index arc closepath stroke pop } for stroke grestore");
 }
 
 
