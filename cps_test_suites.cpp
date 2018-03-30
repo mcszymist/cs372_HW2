@@ -27,8 +27,8 @@ TEST_CASE("Simple Shape Construction: Rectangle", "[shapes]"){
     unique_ptr<Shape> shape(new Rectangle(5,10));
     shape->setCursor(5,5);
     REQUIRE(shape->getHeight()==10);
-    REQUIRE(shape->getPostscript()=="newpath -2.5 -5 moveto 2.5 -5 lineto 2.5 5 lineto -2.5 5 lineto closepath stroke");
-    REQUIRE(shape->finalize()=="gsave 5 5 translate newpath -2.5 -5 moveto 2.5 -5 lineto 2.5 5 lineto -2.5 5 lineto closepath stroke grestore");
+    REQUIRE(shape->getPostscript()=="/W 2.5 def /H 5 def newpath -W -H moveto W -H lineto W H lineto -W H lineto closepath stroke");
+    REQUIRE(shape->finalize()=="gsave 5 5 translate /W 2.5 def /H 5 def newpath -W -H moveto W -H lineto W H lineto -W H lineto closepath stroke grestore");
 
 }
 TEST_CASE("Simple Shape Construction: Spacer", "[shapes]"){
@@ -40,16 +40,16 @@ TEST_CASE("Simple Shape Construction: Square", "[shapes]"){
     unique_ptr<Shape> shape(new Square(10));
     shape->setCursor(5,5);
     REQUIRE(shape->getHeight()==10);
-    REQUIRE(shape->getPostscript()=="newpath -5 -5 moveto 5 -5 lineto 5 5 lineto -5 5 lineto closepath stroke");
-    REQUIRE(shape->finalize()=="gsave 5 5 translate newpath -5 -5 moveto 5 -5 lineto 5 5 lineto -5 5 lineto closepath stroke grestore");
+    REQUIRE(shape->getPostscript()=="/W 5 def /H 5 def newpath -W -H moveto W -H lineto W H lineto -W H lineto closepath stroke");
+    REQUIRE(shape->finalize()=="gsave 5 5 translate /W 5 def /H 5 def newpath -W -H moveto W -H lineto W H lineto -W H lineto closepath stroke grestore");
 
 }
 TEST_CASE("Simple Shape Construction: Triangle", "[shapes]"){
     unique_ptr<Shape> shape(new Triangle(10));
     shape->setCursor(5,5);
     REQUIRE(shape->getHeight()==10);
-    REQUIRE(shape->getPostscript()=="newpath -5 -5 moveto 5 -5 lineto 0 5 lineto closepath stroke");
-    REQUIRE(shape->finalize()=="gsave 5 5 translate newpath -5 -5 moveto 5 -5 lineto 0 5 lineto closepath stroke grestore");
+    REQUIRE(shape->getPostscript()=="/W 5 def /H 5 def newpath -W -H moveto W -H lineto 0 H lineto closepath stroke");
+    REQUIRE(shape->finalize()=="gsave 5 5 translate /W 5 def /H 5 def newpath -W -H moveto W -H lineto 0 H lineto closepath stroke grestore");
 
 }
 

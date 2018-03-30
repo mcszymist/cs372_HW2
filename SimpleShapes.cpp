@@ -12,26 +12,21 @@ string Circle::getPostscript(){
 
 string Triangle::getPostscript(){
     stringstream ss;
-    ss << "0 0 0 360 arc stroke";
+    ss << "/W "<<getWidth()/2.0<<" def /H "<< getHeight()/2.0 <<" def newpath -W -H moveto W -H lineto 0 H lineto closepath stroke";
     return ss.str();
 }
 string Square::getPostscript(){
     stringstream ss;
-    ss << "0 0  0 360 arc stroke";
+    ss << "/W "<< getWidth()/2.0 <<" def /H "<< getHeight()/2.0 <<" def newpath -W -H moveto W -H lineto W H lineto -W H lineto closepath stroke";
     return ss.str();
 }
 string Rectangle::getPostscript(){
     stringstream ss;
-    double width = getWidth()/2.0;
-    double height = getHeight()/2.0;
-    ss << "newpath -"<< width <<" -"<< height << " moveto "<< width <<" -" << height;
-    ss << " lineto "<< width <<" " << height <<" lineto -"<< width << " " << height <<" lineto closepath stroke";
+    ss << "/W "<< getWidth()/2.0 <<" def /H "<< getHeight()/2.0 <<" def newpath -W -H moveto W -H lineto W H lineto -W H lineto closepath stroke";
     return ss.str();
 }
 string Spacer::getPostscript(){
-    stringstream ss;
-    ss << "0 0 0 360 arc stroke";
-    return ss.str();
+    return "";
 }
 string Polygon::getPostscript(){
     stringstream ss;
