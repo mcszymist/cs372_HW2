@@ -2,7 +2,7 @@
 using std::string;
 #include <sstream>
 using std::stringstream;
-#include "ComplexShapes.h"
+#include "headers/ComplexShapes.h"
 
 string Rotated::getPostscript(){
     stringstream ss;

@@ -1,12 +1,11 @@
-#define CATCH_CONFIG_FAST_COMPILE
 #include <memory>
 using std::unique_ptr;
 using std::shared_ptr;
 #include "catch.hpp"
-#include "Shape.h"
-#include "SimpleShapes.h"
-#include "ComplexShapes.h"
-#include "UniqueShapes.h"
+#include "headers/Shape.h"
+#include "headers/SimpleShapes.h"
+#include "headers/ComplexShapes.h"
+#include "headers/UniqueShapes.h"
 
 TEST_CASE("Simple Shape Construction: Min Circle", "[shapes]"){
     unique_ptr<Shape> shape(new Circle(1));

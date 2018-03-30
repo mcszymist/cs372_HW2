@@ -2,7 +2,7 @@
 using std::string;
 #include <sstream>
 using std::stringstream;
-#include "SimpleShapes.h"
+#include "headers/SimpleShapes.h"
 
 string Circle::getPostscript(){
     stringstream ss;

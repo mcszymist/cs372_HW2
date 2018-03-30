@@ -1,9 +1,9 @@
 #include <vector>
 using std::vector;
-#include "Shape.h"
-#include "SimpleShapes.h"
-#include "ComplexShapes.h"
-#include "UniqueShapes.h"
+#include "headers/Shape.h"
+#include "headers/SimpleShapes.h"
+#include "headers/ComplexShapes.h"
+#include "headers/UniqueShapes.h"
 
 
 int makePostscriptFile(vector<shared_ptr<Shape>> g){
