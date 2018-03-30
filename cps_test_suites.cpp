@@ -103,3 +103,11 @@ TEST_CASE( "Rotation: Triangle 270","[compoundShapes]") {
     REQUIRE(rotated->finalize()=="gsave 5 5 translate 270 rotate /W 5 def /H 5 def newpath -W -H moveto W -H lineto 0 H lineto closepath stroke grestore");
 
 }
+
+TEST_CASE( "Compound Shape Construction: Vertical Shapes") {
+    Triangle triangle = Triangle(10);
+    Square square = Square(20);
+    Circle circle = Circle(30);
+    shared_ptr<Shape> vertical(new VerticalShape(triangle, square, circle));
+    REQUIRE(vertical->getPostscript()=="TRIANGLE SQUARE CIRCLE");
+}
