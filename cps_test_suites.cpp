@@ -132,7 +132,7 @@ TEST_CASE( "Unique Shape: Circle with Arcs", "[uniqueShapes]") {
 
 }
 
-TEST_CASE (" Scaled Shape to certian dimentions" ,"[compoundShapes]") {
+TEST_CASE (" Scaled Shape to certain dimentions" ,"[compoundShapes]") {
 
 }
 
