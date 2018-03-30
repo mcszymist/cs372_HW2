@@ -107,6 +107,7 @@ TEST_CASE( "Rotation: Triangle 270","[compoundShapes]") {
     REQUIRE(rotated->finalize()=="gsave 5 5 translate 270 rotate /W 5 def /H 5 def newpath -W -H moveto W -H lineto 0 H lineto closepath stroke grestore");
 
 }
+<<<<<<< HEAD
 TEST_CASE("Rotation: Multiply times","[compoundShapes]"){
     shared_ptr<Shape> shape(new Triangle(10));
     shape->setCursor(5,5);
@@ -119,3 +120,15 @@ TEST_CASE("Rotation: Multiply times","[compoundShapes]"){
     REQUIRE(rotated5->getPostscript()=="270 rotate 270 rotate 270 rotate 270 rotate 270 rotate /W 5 def /H 5 def newpath -W -H moveto W -H lineto 0 H lineto closepath stroke");
 
 }
+=======
+
+TEST_CASE( "Unique Shape: Circle with Arcs", "[uniqueShapes]") {
+    unique_ptr<Shape> shape(new CircleWithArcs(10));
+    // shape->setCursor(5,5);
+    // Rotation angle(270);
+    // shared_ptr<Shape> rotated(new Rotated(shape, angle));
+    // REQUIRE(rotated->getPostscript()=="270 rotate /W 5 def /H 5 def newpath -W -H moveto W -H lineto 0 H lineto closepath stroke");
+    // REQUIRE(rotated->finalize()=="gsave 5 5 translate 270 rotate /W 5 def /H 5 def newpath -W -H moveto W -H lineto 0 H lineto closepath stroke grestore");
+
+}
+>>>>>>> 97b339f300887ee3178f6b43452618068223446c
