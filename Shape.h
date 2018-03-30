@@ -21,7 +21,4 @@ public:
     void saveRestore(string &s);
 };
 
-class Rotation{
-    
-};
 #endif

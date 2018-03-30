@@ -2,9 +2,11 @@
 #define CATCH_CONFIG_FAST_COMPILE
 #include <memory>
 using std::unique_ptr;
+using std::shared_ptr;
 #include "catch.hpp"
 #include "Shape.h"
 #include "SimpleShapes.h"
+#include "ComplexShapes.h"
 
 //Not sure how we want to do coords like this or should we just undle in the constructor.
 TEST_CASE("Simple Shape Construction: Circle", "[shapes]"){
@@ -53,4 +55,30 @@ TEST_CASE("Simple Shape Construction: Triangle", "[shapes]"){
 
 }
 
+TEST_CASE("Compound Shape Construction: Rotation 90", "[compoundShapes]") {
+	shared_ptr<Shape> shape(new Triangle(10));
+	shape->setCursor(5, 5);
+	Rotation angle(90);
+	shared_ptr<Shape> rotated(new Rotated(shape, angle));
+	REQUIRE(rotated->getPostscript() == "90 rotate /W 5 def /H 5 def newpath -W -H moveto W -H lineto 0 H lineto closepath stroke");
+	REQUIRE(rotated->finalize() == "gsave 5 5 translate 90 rotate /W 5 def /H 5 def newpath -W -H moveto W -H lineto 0 H lineto closepath stroke grestore");
 
+}
+TEST_CASE( "Rotation: Triangle 180") {
+    shared_ptr<Shape> shape(new Triangle(10));
+    shape->setCursor(5,5);
+    Rotation angle(180);
+    shared_ptr<Shape> rotated(new Rotated(shape, angle));
+    REQUIRE(rotated->getPostscript()=="180 rotate /W 5 def /H 5 def newpath -W -H moveto W -H lineto 0 H lineto closepath stroke");
+    REQUIRE(rotated->finalize()=="gsave 5 5 translate 180 rotate /W 5 def /H 5 def newpath -W -H moveto W -H lineto 0 H lineto closepath stroke grestore");
+
+}
+TEST_CASE( "Rotation: Triangle 270") {
+    shared_ptr<Shape> shape(new Triangle(10));
+    shape->setCursor(5,5);
+    Rotation angle(270);
+    shared_ptr<Shape> rotated(new Rotated(shape, angle));
+    REQUIRE(rotated->getPostscript()=="270 rotate /W 5 def /H 5 def newpath -W -H moveto W -H lineto 0 H lineto closepath stroke");
+    REQUIRE(rotated->finalize()=="gsave 5 5 translate 270 rotate /W 5 def /H 5 def newpath -W -H moveto W -H lineto 0 H lineto closepath stroke grestore");
+
+}
