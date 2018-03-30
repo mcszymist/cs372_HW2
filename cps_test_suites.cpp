@@ -3,6 +3,9 @@
 #include <memory>
 using std::unique_ptr;
 using std::shared_ptr;
+#include <algorithm>
+using std::max;
+
 #include "catch.hpp"
 #include "Shape.h"
 #include "SimpleShapes.h"
@@ -104,10 +107,25 @@ TEST_CASE( "Rotation: Triangle 270","[compoundShapes]") {
 
 }
 
-TEST_CASE( "Compound Shape Construction: Vertical Shapes") {
+TEST_CASE( "Compound Shape - Vertical Shapes: Triangle Square Circle") {
     shared_ptr<Shape> triangle(new Triangle(10));
     shared_ptr<Shape> square(new Square(20));
     shared_ptr<Shape> circle(new Circle(30));
     shared_ptr<Shape> vertical(new VerticalShape(triangle, square, circle));
-    REQUIRE(vertical->getPostscript()=="TRIANGLE SQUARE CIRCLE");
+
+    SECTION("Constructor") {
+        // Shape shapes[i+1]'s bounding box is located directly above the bounding box of shapes[i],
+        
+        // and both bounding boxes are vertically aligned around their center.
+        
+        // The height of the resulting shape's bounding box is the sum of the heights of the component shapes.
+        REQUIRE( vertical->getHeight() == triangle->getHeight() + square->getHeight() + circle->getHeight() );
+        
+        // The width of the resulting shape's bounding box is the maximum width of the widths of the component shapes.
+        REQUIRE( vertical->getWidth() == max( max(triangle->getWidth(), square->getWidth()), circle->getWidth() ) );
+    }
+
+    SECTION("PostScript") {
+        REQUIRE(vertical->getPostscript()=="TRIANGLE SQUARE CIRCLE");
+    }
 }
