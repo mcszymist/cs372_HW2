@@ -32,10 +32,12 @@ private:
 public:
     Rotated(shared_ptr<Shape> s,Rotation a) : shape(s){
         angle = a.getAngle();
+        setWidth(s->getWidth());
+        setHeight(s->getHeight());
         setCursor(s->getLocX(),s->getLocY());
     }
     string getPostscript() override;
 };
-//might add error possible
+
 
 #endif
