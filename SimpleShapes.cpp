@@ -30,6 +30,6 @@ string Spacer::getPostscript(){
 }
 string Polygon::getPostscript(){
     stringstream ss;
-    ss << "0 0 0 360 arc stroke";
+    ss << "/S "<<sides<<" def /H "<< getHeight() <<" def /A 360 S div def A cos H mul H sub A sin H mul 0 sub atan rotate -90 rotate H 0 moveto S{ A cos H mul A sin H mul lineto /A A 360 S div add def } repeat closepath stroke";
     return ss.str();
 }

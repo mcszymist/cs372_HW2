@@ -18,8 +18,8 @@ TEST_CASE("Simple Shape Construction: Polygon", "[shapes]"){
     unique_ptr<Shape> shape(new Polygon(5,10));
     shape->setCursor(100,100);
     REQUIRE(shape->getHeight()==10);
-    REQUIRE(shape->getPostscript()=="/S 5 def /H 100 def /A 360 S div def A cos H mul H sub A sin H mul 0 sub atan rotate -90 rotate H 0 moveto S{ A cos H mul A sin H mul lineto /A A 360 S div add def } repeat closepath stroke");
-    REQUIRE(shape->finalize()=="gsave 100 100 translate /S 5 def /H 100 def /A 360 S div def A cos H mul H sub A sin H mul 0 sub atan rotate -90 rotate H 0 moveto S{ A cos H mul A sin H mul lineto /A A 360 S div add def } repeat closepath stroke grestore");
+    REQUIRE(shape->getPostscript()=="/S 5 def /H 10 def /A 360 S div def A cos H mul H sub A sin H mul 0 sub atan rotate -90 rotate H 0 moveto S{ A cos H mul A sin H mul lineto /A A 360 S div add def } repeat closepath stroke");
+    REQUIRE(shape->finalize()=="gsave 100 100 translate /S 5 def /H 10 def /A 360 S div def A cos H mul H sub A sin H mul 0 sub atan rotate -90 rotate H 0 moveto S{ A cos H mul A sin H mul lineto /A A 360 S div add def } repeat closepath stroke grestore");
 
 }
 
