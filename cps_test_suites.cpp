@@ -138,7 +138,7 @@ TEST_CASE (" Scaled Shape to certain dimentions" ,"[compoundShapes]") {
     shared_ptr<Shape> shape(new Triangle(10));
     shape->setCursor(5,5);
     shared_ptr<Shape> scaled1(new Scaled(shape, 1.0,2.0));
-    REQUIRE(scaled1->getPostscript() == "/W 5 def /H 5 def newpath -W -H moveto W -H lineto 0 H lineto closepath 1.0 2.0 scaled");
+    REQUIRE(scaled1->getPostscript() == "/W 5 def /H 5 def newpath -W -H moveto W -H lineto 0 H lineto closepath 1 2 scaled");
 }
 
 
