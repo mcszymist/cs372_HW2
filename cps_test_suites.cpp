@@ -9,6 +9,14 @@ using std::shared_ptr;
 #include "ComplexShapes.h"
 
 //Not sure how we want to do coords like this or should we just undle in the constructor.
+TEST_CASE("Simple Shape Construction: Min Circle", "[shapes]"){
+    unique_ptr<Shape> shape(new Circle(1));
+    shape->setCursor(1,1);
+    REQUIRE(shape->getHeight()==2);
+    REQUIRE(shape->getPostscript()=="0 0 1 0 360 arc stroke");
+    REQUIRE(shape->finalize()=="gsave 1 1 translate 0 0 1 0 360 arc stroke grestore");
+}
+
 TEST_CASE("Simple Shape Construction: Circle", "[shapes]"){
     unique_ptr<Shape> shape(new Circle(10));
     shape->setCursor(10,10);
@@ -55,6 +63,19 @@ TEST_CASE("Simple Shape Construction: Triangle", "[shapes]"){
 
 }
 
+TEST_CASE( "Rotation: Triangle Info Check", "[compoundShapes]") {
+    shared_ptr<Shape> shape(new Triangle(10));
+    shape->setCursor(5,5);
+    Rotation angle(270);
+    shared_ptr<Shape> rotated(new Rotated(shape, angle));
+    REQUIRE(rotated->getLocX()==5);
+    REQUIRE(rotated->getLocY()==5);
+    REQUIRE(rotated->getHeight()==10);
+    REQUIRE(rotated->getWidth()==10);
+    REQUIRE(rotated->getPostscript()=="270 rotate /W 5 def /H 5 def newpath -W -H moveto W -H lineto 0 H lineto closepath stroke");
+    REQUIRE(rotated->finalize()=="gsave 5 5 translate 270 rotate /W 5 def /H 5 def newpath -W -H moveto W -H lineto 0 H lineto closepath stroke grestore");
+}
+
 TEST_CASE("Compound Shape Construction: Rotation 90", "[compoundShapes]") {
 	shared_ptr<Shape> shape(new Triangle(10));
 	shape->setCursor(5, 5);
@@ -64,7 +85,7 @@ TEST_CASE("Compound Shape Construction: Rotation 90", "[compoundShapes]") {
 	REQUIRE(rotated->finalize() == "gsave 5 5 translate 90 rotate /W 5 def /H 5 def newpath -W -H moveto W -H lineto 0 H lineto closepath stroke grestore");
 
 }
-TEST_CASE( "Rotation: Triangle 180") {
+TEST_CASE( "Rotation: Triangle 180","[compoundShapes]") {
     shared_ptr<Shape> shape(new Triangle(10));
     shape->setCursor(5,5);
     Rotation angle(180);
@@ -73,7 +94,7 @@ TEST_CASE( "Rotation: Triangle 180") {
     REQUIRE(rotated->finalize()=="gsave 5 5 translate 180 rotate /W 5 def /H 5 def newpath -W -H moveto W -H lineto 0 H lineto closepath stroke grestore");
 
 }
-TEST_CASE( "Rotation: Triangle 270") {
+TEST_CASE( "Rotation: Triangle 270","[compoundShapes]") {
     shared_ptr<Shape> shape(new Triangle(10));
     shape->setCursor(5,5);
     Rotation angle(270);
