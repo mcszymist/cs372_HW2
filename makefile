@@ -18,7 +18,7 @@ tests:
 		UniqueShapes.cpp \
 
 tests-run: tests
-	./$(TEST_OUT_FILE) $1
+	./tests.out $1
 
 run: all
 	./$(OUT_FILE)
