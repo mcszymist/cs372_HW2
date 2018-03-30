@@ -17,6 +17,10 @@ TEST_CASE("Simple Shape Construction: Min Circle", "[shapes]"){
     REQUIRE(shape->finalize()=="gsave 1 1 translate 0 0 1 0 360 arc stroke grestore");
 }
 
+TEST_CASE("Simple Shape: Extreme values", "[shapes]"){
+    
+}
+
 TEST_CASE("Simple Shape Construction: Circle", "[shapes]"){
     unique_ptr<Shape> shape(new Circle(10));
     shape->setCursor(10,10);
@@ -113,5 +117,5 @@ TEST_CASE("Rotation: Multiply times","[compoundShapes]"){
     shared_ptr<Shape> rotated4(new Rotated(rotated3, angle));
     shared_ptr<Shape> rotated5(new Rotated(rotated4, angle));
     REQUIRE(rotated5->getPostscript()=="270 rotate 270 rotate 270 rotate 270 rotate 270 rotate /W 5 def /H 5 def newpath -W -H moveto W -H lineto 0 H lineto closepath stroke");
-    
+
 }
