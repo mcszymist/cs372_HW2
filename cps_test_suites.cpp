@@ -7,6 +7,7 @@ using std::shared_ptr;
 #include "Shape.h"
 #include "SimpleShapes.h"
 #include "ComplexShapes.h"
+#include "UniqueShapes.h"
 
 //Not sure how we want to do coords like this or should we just undle in the constructor.
 TEST_CASE("Simple Shape Construction: Min Circle", "[shapes]"){
