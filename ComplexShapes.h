@@ -4,6 +4,8 @@
 using std::shared_ptr;
 #include <string>
 using std::string;
+#include <vector>
+using std::vector;
 #include "Shape.h"
 
 class Rotation{
@@ -39,5 +41,16 @@ public:
     string getPostscript() override;
 };
 
+class VerticalShape : public Shape{
+private:
+    vector<shared_ptr<Shape>> shapes;
+
+public:
+    VerticalShape(shared_ptr<Shape> shape, ...) {
+        shapes.push_back(shape);
+    }
+
+    string getPostscript() override;
+};
 
 #endif

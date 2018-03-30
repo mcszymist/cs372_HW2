@@ -105,9 +105,9 @@ TEST_CASE( "Rotation: Triangle 270","[compoundShapes]") {
 }
 
 TEST_CASE( "Compound Shape Construction: Vertical Shapes") {
-    Triangle triangle = Triangle(10);
-    Square square = Square(20);
-    Circle circle = Circle(30);
+    shared_ptr<Shape> triangle(new Triangle(10));
+    shared_ptr<Shape> square(new Square(20));
+    shared_ptr<Shape> circle(new Circle(30));
     shared_ptr<Shape> vertical(new VerticalShape(triangle, square, circle));
     REQUIRE(vertical->getPostscript()=="TRIANGLE SQUARE CIRCLE");
 }

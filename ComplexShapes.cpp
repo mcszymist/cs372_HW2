@@ -9,3 +9,7 @@ string Rotated::getPostscript(){
     ss << angle << " rotate " << shape->getPostscript();
     return ss.str();
 }
+
+string VerticalShape::getPostscript(){
+    return "TRIANGLE SQUARE CIRCLE";
+}
