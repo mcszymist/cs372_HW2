@@ -5,7 +5,7 @@
     #include "Shape.h"
     void Shape::addLocation(string &s){
         stringstream ss;
-        ss << xPos << " " << yPos << " translate " << s;
+        ss << xPos << " " << yPos << " translate " << s << " stroke";
         s = ss.str();
         return;
     }
