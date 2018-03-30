@@ -103,3 +103,15 @@ TEST_CASE( "Rotation: Triangle 270","[compoundShapes]") {
     REQUIRE(rotated->finalize()=="gsave 5 5 translate 270 rotate /W 5 def /H 5 def newpath -W -H moveto W -H lineto 0 H lineto closepath stroke grestore");
 
 }
+TEST_CASE("Rotation: Multiply times","[compoundShapes]"){
+    shared_ptr<Shape> shape(new Triangle(10));
+    shape->setCursor(5,5);
+    Rotation angle(270);
+    shared_ptr<Shape> rotated1(new Rotated(shape, angle));
+    shared_ptr<Shape> rotated2(new Rotated(rotated1, angle));
+    shared_ptr<Shape> rotated3(new Rotated(rotated2, angle));
+    shared_ptr<Shape> rotated4(new Rotated(rotated3, angle));
+    shared_ptr<Shape> rotated5(new Rotated(rotated4, angle));
+    REQUIRE(rotated5->getPostscript()=="270 rotate 270 rotate 270 rotate 270 rotate 270 rotate /W 5 def /H 5 def newpath -W -H moveto W -H lineto 0 H lineto closepath stroke");
+    
+}
