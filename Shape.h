@@ -21,5 +21,4 @@ public:
     void saveRestore(string &s);
 };
 
-
 #endif
