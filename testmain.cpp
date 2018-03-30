@@ -9,7 +9,7 @@
                              // Disable some features for faster compile
 #define CATCH_CONFIG_RUNNER  // We write our own main
 
-#include "catch.hpp"         // For the "Catch" unit-testing framework
+#include "build/catch.hpp"   // For the "Catch" unit-testing framework
 #include <iostream>          // For std::cout, endl, cin
 
 

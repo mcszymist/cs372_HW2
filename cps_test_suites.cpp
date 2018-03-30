@@ -1,7 +1,7 @@
 #include <memory>
 using std::unique_ptr;
 using std::shared_ptr;
-#include "catch.hpp"
+#include "headers/catch.hpp"
 #include "headers/Shape.h"
 #include "headers/SimpleShapes.h"
 #include "headers/ComplexShapes.h"
