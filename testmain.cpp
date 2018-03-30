@@ -9,7 +9,7 @@
                              // Disable some features for faster compile
 #define CATCH_CONFIG_RUNNER  // We write our own main
 
-#include "build/catch.hpp"   // For the "Catch" unit-testing framework
+#include "headers/catch.hpp"   // For the "Catch" unit-testing framework
 #include <iostream>          // For std::cout, endl, cin
 
 
@@ -33,10 +33,6 @@ int main(int argc, char *argv[])
                   << std::endl
                   << std::endl;
     }
-
-    // Wait for user
-    std::cout << "Press ENTER to quit ";
-    while (std::cin.get() != '\n') ;
 
     // Program return value is return code from Catch
     return catchresult;
