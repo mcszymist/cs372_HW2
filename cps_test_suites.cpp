@@ -7,6 +7,7 @@ using std::shared_ptr;
 #include "Shape.h"
 #include "SimpleShapes.h"
 #include "ComplexShapes.h"
+#include "UniqueShapes.h"
 
 //Not sure how we want to do coords like this or should we just undle in the constructor.
 TEST_CASE("Simple Shape Construction: Min Circle", "[shapes]"){
@@ -132,18 +133,14 @@ TEST_CASE( "Unique Shape: Circle with Arcs", "[uniqueShapes]") {
 
 }
 
-TEST_CASE (" Scaled Shape to certian dimentions" ,"[compoundShapes]") {
+TEST_CASE (" Scaled Shape to certain dimentions" ,"[compoundShapes]") {
     shared_ptr<Shape> shape(new Triangle(10));
     shape->setCursor(5,5);
     shared_ptr<Shape> scaled1(new Scaled(shape, 1.0,2.0));
     string ss = scaled1->getPostscript();
     int end = ss.size();
     REQUIRE(scaled1->getPostscript()[end - 6] == 'TTTT');
-
-
-
-
-
-
 }
+
+
 
