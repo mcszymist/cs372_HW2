@@ -139,7 +139,7 @@ TEST_CASE (" Scaled Shape to certain dimentions" ,"[compoundShapes]") {
     shared_ptr<Shape> scaled1(new Scaled(shape, 1.0,2.0));
     string ss = scaled1->getPostscript();
     int end = ss.size();
-    REQUIRE(scaled1->getPostscript()[end - 6] == 'TTTT');
+    REQUIRE(scaled1->getPostscript()[end - 6] == 'T');
 }
 
 
