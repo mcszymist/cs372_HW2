@@ -39,5 +39,30 @@ public:
     string getPostscript() override;
 };
 
+class Scaled : public Shape{
+private:
+    double fx;
+    double fy;
+    shared_ptr<Shape> shape;
+
+public:
+    Scaled(shared_ptr<Shape> s, double _fx, double _fy) : shape(s), fx(_fx), fy(_fy){
+        setWidth(s->getWidth());
+        setHeight(s->getHeight());
+        setCursor(s->getLocX(),s->getLocY());
+    }
+    string getPostscript() override;
+
+    double getFX(){
+        return fx;
+    }
+
+      double getFY(){
+        return fy;
+    }
+};
+
+
+
 
 #endif

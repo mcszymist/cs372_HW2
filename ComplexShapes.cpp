@@ -9,3 +9,9 @@ string Rotated::getPostscript(){
     ss << angle << " rotate " << shape->getPostscript();
     return ss.str();
 }
+
+string Scaled::getPostscript(){
+    stringstream ss;
+    ss << shape->getPostscript() << " " << getFX() << " "<< getFY() << " scaled";
+    return ss.str();
+}
