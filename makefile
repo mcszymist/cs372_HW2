@@ -19,12 +19,3 @@ tests:
 
 tests-run: tests
 	./tests.out $1
-
-run: all
-	./$(OUT_FILE)
-
-clean:
-	rm $(OBJ_FILES) $(MAIN).o *.out
-
-clean-tests:
-	rm $(TESTING_OBJ_FILES)
