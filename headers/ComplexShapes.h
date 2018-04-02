@@ -75,8 +75,6 @@ private:
 
 public:
     Layered(initializer_list<shared_ptr<Shape>> list) {
-        setHeight(0);   // Initialize height
-        setWidth(0);    // Initialize wid
          // Populate vector
         for (auto shape : list)
             shapes.push_back(shape);
@@ -105,9 +103,6 @@ private:
 
 public:
     VerticalShape(initializer_list<shared_ptr<Shape>> list) {
-        setHeight(0);   // Initialize height
-        setWidth(0);    // Initialize width
-
         // Populate vector
         for (auto shape : list)
             shapes.push_back(shape);
@@ -136,9 +131,6 @@ private:
 
 public:
     HorizontalShape(initializer_list<shared_ptr<Shape>> list) {
-        setHeight(0);   // Initialize height
-        setWidth(0);    // Initialize width
-
         // Populate vector
         for (auto shape : list)
             shapes.push_back(shape);

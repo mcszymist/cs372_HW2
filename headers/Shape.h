@@ -6,7 +6,10 @@ using std::string;
 
 class Shape{
 private:
-    int xPos,yPos,height,width;
+    int xPos = 0;
+    int yPos = 0;
+    int height = 0;
+    int width = 0;
 public:
     virtual string getPostscript() = 0;
     string finalize();
