@@ -38,8 +38,14 @@ private:
 public:
     Rotated(shared_ptr<Shape> s,Rotation a) : shape(s){
         angle = a.getAngle();
-        setWidth(s->getWidth());
-        setHeight(s->getHeight());
+        if(angle == 90 || angle == 270){
+            setWidth(s->getHeight());
+            setHeight(s->getWidth());
+        }
+        else{
+            setWidth(s->getWidth());
+            setHeight(s->getHeight());
+        }
         setCursor(s->getLocX(),s->getLocY());
     }
     string getPostscript() override;
