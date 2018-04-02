@@ -169,11 +169,11 @@ TEST_CASE("file ps test","[files]"){
 TEST_CASE("All simple shapes to file","[files]"){
     stringstream ss,fileSS;
     vector<shared_ptr<Shape> > allShapes;
-    shared_ptr<Shape> shape(new Triangle(10));
-    shared_ptr<Shape> shape1(new Circle(10));
-    shared_ptr<Shape> shape2(new Circle(10));
-    shared_ptr<Shape> shape3(new Circle(10));
-    shared_ptr<Shape> shape4(new Circle(10));
+    shared_ptr<Shape> shape(new Triangle(10,20,20));
+    shared_ptr<Shape> shape1(new Circle(10,10,10));
+    shared_ptr<Shape> shape2(new Square(10,30,30));
+    shared_ptr<Shape> shape3(new Polygon(6,10,40,40));
+    shared_ptr<Shape> shape4(new Rectangle(6,10,50,50));
     allShapes.push_back(shape);
     allShapes.push_back(shape1);
     allShapes.push_back(shape2);
