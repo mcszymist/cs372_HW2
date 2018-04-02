@@ -26,5 +26,10 @@ string VerticalShape::getPostscript() {
 }
 
 string HorizontalShape::getPostscript() {
-    return "I'M A STRING!";
+    stringstream ss;
+    for (auto shape : shapes )
+        ss << shape->finalize() << " ";
+    string ps = ss.str();
+    ps.pop_back(); // Delete the last space!
+    return ps;;
 }
