@@ -111,6 +111,12 @@ public:
         // Populate vector
         for (auto shape : list)
             shapes.push_back(shape);
+
+        // Set height
+        for (auto shape : shapes) {
+            if (getHeight() < shape->getHeight())
+                setHeight(shape->getHeight());
+        }
     }
 
     string getPostscript() override;
