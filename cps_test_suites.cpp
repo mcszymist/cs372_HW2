@@ -14,6 +14,22 @@ using std::stringstream;
 #include "headers/UniqueShapes.h"
 #include "headers/cps.h"
 
+TEST_CASE("Checking cursor pos","[cursor]"){
+    shared_ptr<Shape> shape(new Circle(5));
+    shape->setCursor(1,1);
+    REQUIRE(shape->getLocX()==1);
+    REQUIRE(shape->getLocY()==1);
+    shape->setCursor(100,100);
+    REQUIRE(shape->getLocX()==100);
+    REQUIRE(shape->getLocY()==100);
+    shape->setCursor(80,1000);
+    REQUIRE(shape->getLocX()==80);
+    REQUIRE(shape->getLocY()==1000);
+    shape->setCursor(-8,-9);
+    REQUIRE(shape->getLocX()==-8);
+    REQUIRE(shape->getLocY()==-9);
+
+}
 TEST_CASE("Simple Shape Construction: Min Circle", "[shapes]"){
     shared_ptr<Shape> shape(new Circle(1));
     shape->setCursor(1,1);
