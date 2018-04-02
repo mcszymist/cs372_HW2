@@ -24,3 +24,18 @@ Possible shapes are:
    - Layered
 3. Unique - Non-standard shapes
    - Circle with arcs
+
+
+Files in project:
+- build/ - Directory holding object files
+- headers/ - Directory holding header files
+- .gitignore
+- ComplexShapes.cpp - implementation file for all complex shapes
+- cps_test_suites.cpp - file holding all the tests for the project
+- cps.cpp - implementation file for makePostscriptFile
+- main.cpp - place to write code that will be turned into postscript by calling makePostscriptFile
+- makefile - file for GNU make
+- Shape.cpp - Base class that other shapes inherit from
+- SimpleShapes.cpp - implementation file for all simple shapes
+- testmain.cpp - main file for tests. 
+- UniqueShapes.cpp - implementation file for all unique shapes
