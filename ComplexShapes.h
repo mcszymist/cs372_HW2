@@ -6,7 +6,11 @@ using std::shared_ptr;
 using std::string;
 #include <vector>
 using std::vector;
+#include <initializer_list>
+using std::initializer_list;
+
 #include "Shape.h"
+
 
 class Rotation{
 private:
@@ -46,8 +50,13 @@ private:
     vector<shared_ptr<Shape>> shapes;
 
 public:
-    VerticalShape(shared_ptr<Shape> shape, ...) {
-        shapes.push_back(shape);
+    VerticalShape(initializer_list<shared_ptr<Shape>> list) {
+        setHeight(0);   // HACK: Why is an empty VerticalShape starting with a height of 10?!
+
+        for (auto shape : list) {
+            shapes.push_back(shape);
+            setHeight(getHeight() + shape->getHeight());
+        };
     }
 
     string getPostscript() override;
