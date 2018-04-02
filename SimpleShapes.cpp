@@ -12,17 +12,17 @@ string Circle::getPostscript(){
 
 string Triangle::getPostscript(){
     stringstream ss;
-    ss << "/W "<<getWidth()/2.0<<" def /H "<< getHeight()/2.0 <<" def newpath -W -H moveto W -H lineto 0 H lineto closepath";
+    ss << "/W "<<getWidth()/2.0<<" def /H "<< getHeight()/2.0 <<" def newpath W neg H neg moveto W H neg lineto 0 H lineto closepath";
     return ss.str();
 }
 string Square::getPostscript(){
     stringstream ss;
-    ss << "/W "<< getWidth()/2.0 <<" def /H "<< getHeight()/2.0 <<" def newpath -W -H moveto W -H lineto W H lineto -W H lineto closepath";
+    ss << "/W "<< getWidth()/2.0 <<" def /H "<< getHeight()/2.0 <<" def newpath W neg H neg moveto W H neg lineto W H lineto W neg H lineto closepath";
     return ss.str();
 }
 string Rectangle::getPostscript(){
     stringstream ss;
-    ss << "/W "<< getWidth()/2.0 <<" def /H "<< getHeight()/2.0 <<" def newpath -W -H moveto W -H lineto W H lineto -W H lineto closepath";
+    ss << "/W "<< getWidth()/2.0 <<" def /H "<< getHeight()/2.0 <<" def newpath W neg H neg moveto W H neg lineto W H lineto W neg H lineto closepath";
     return ss.str();
 }
 string Spacer::getPostscript(){
