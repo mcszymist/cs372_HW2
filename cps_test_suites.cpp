@@ -6,6 +6,7 @@ using std::max;
 using std::ifstream;
 #include <iostream>
 using std::endl;
+#include <string>
 using std::getline;
 #include <sstream>
 using std::stringstream;
