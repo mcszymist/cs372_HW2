@@ -257,6 +257,8 @@ TEST_CASE( "Compound Shape - Layered Shapes: Triangle Square Circle") {
     shared_ptr<Shape> layered(new Layered( {circle, square, triangle} ));
 
     SECTION("Constructor") {    
+
+        REQUIRE(circle->getLocY() == 15);
         // The height of the resulting shape's bounding box is the maximum of the heights of the component shapes.
          REQUIRE( layered->getHeight() == max( max(triangle->getHeight(), square->getHeight()), circle->getHeight() ) );
         // The width of the resulting shape's bounding box is the maximum width of the widths of the component shapes.
@@ -266,6 +268,7 @@ TEST_CASE( "Compound Shape - Layered Shapes: Triangle Square Circle") {
         REQUIRE( triangle->getLocX() == circle->getLocX());
         REQUIRE( square->getLocY() == circle->getLocY());
         REQUIRE( square->getLocX() == square->getLocY());
+        
     }
 
     SECTION("PostScript") {
