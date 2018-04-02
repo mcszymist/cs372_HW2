@@ -28,8 +28,8 @@ TEST_CASE("Checking cursor pos","[cursor]"){
     shape->setCursor(-8,-9);
     REQUIRE(shape->getLocX()==-8);
     REQUIRE(shape->getLocY()==-9);
-
 }
+
 TEST_CASE("Simple Shape Construction: Min Circle", "[shapes]"){
     shared_ptr<Shape> shape(new Circle(1));
     shape->setCursor(1,1);
@@ -90,7 +90,7 @@ TEST_CASE("Simple Shape Construction: Triangle", "[shapes]"){
 
 }
 
-TEST_CASE( "Rotation: Triangle Info Check", "[compoundShapes]") {
+TEST_CASE("Rotation: Triangle Info Check", "[compoundShapes]") {
     shared_ptr<Shape> shape(new Triangle(10));
     shape->setCursor(5,5);
     Rotation angle(270);
@@ -112,7 +112,7 @@ TEST_CASE("Compound Shape Construction: Rotation 90", "[compoundShapes]") {
 	REQUIRE(rotated->finalize() == "gsave 5 5 translate 90 rotate /W 5 def /H 5 def newpath W neg H neg moveto W H neg lineto 0 H lineto closepath stroke grestore");
 
 }
-TEST_CASE( "Rotation: Triangle 180","[compoundShapes]") {
+TEST_CASE("Rotation: Triangle 180","[compoundShapes]") {
     shared_ptr<Shape> shape(new Triangle(10));
     shape->setCursor(5,5);
     Rotation angle(180);
@@ -121,7 +121,7 @@ TEST_CASE( "Rotation: Triangle 180","[compoundShapes]") {
     REQUIRE(rotated->finalize()=="gsave 5 5 translate 180 rotate /W 5 def /H 5 def newpath W neg H neg moveto W H neg lineto 0 H lineto closepath stroke grestore");
 
 }
-TEST_CASE( "Rotation: Triangle 270","[compoundShapes]") {
+TEST_CASE("Rotation: Triangle 270","[compoundShapes]") {
     shared_ptr<Shape> shape(new Triangle(10));
     shape->setCursor(5,5);
     Rotation angle(270);
@@ -145,7 +145,7 @@ TEST_CASE("Rotation: Multiply times","[compoundShapes]"){
 }
 
 
-TEST_CASE( "Unique Shape: Circle with Arcs", "[uniqueShapes]") {
+TEST_CASE("Unique Shape: Circle with Arcs", "[uniqueShapes]") {
     shared_ptr<Shape> shape(new CircleWithArcs(10));
     shape->setCursor(10,10);
     Rotation angle(90);
@@ -156,7 +156,7 @@ TEST_CASE( "Unique Shape: Circle with Arcs", "[uniqueShapes]") {
 }
 
 
-TEST_CASE (" Scaled Shape to certain dimensions" ,"[compoundShapes]") {
+TEST_CASE ("Scaled Shape to certain dimensions" ,"[compoundShapes]") {
     shared_ptr<Shape> shape(new Triangle(10));
     shape->setCursor(5,5);
     shared_ptr<Shape> scaled1(new Scaled(shape, 1.0,2.0));
