@@ -122,8 +122,8 @@ TEST_CASE( "Compound Shape - Vertical Shapes: Triangle Square Circle") {
         // The width of the resulting shape's bounding box is the maximum width of the widths of the component shapes.
         REQUIRE( vertical->getWidth() == max( max(triangle->getWidth(), square->getWidth()), circle->getWidth() ) );
         // Shape shapes[i+1]'s bounding box is located directly above the bounding box of shapes[i],
-        REQUIRE( triangle->getLocY() == (square->getLocY() + square->getHeight()/2) );
-        REQUIRE( square->getLocY() == (circle->getLocY() + circle->getHeight()/2) );
+        REQUIRE( triangle->getLocY() == (square->getLocY() + square->getHeight()/2 + triangle->getHeight()/2) );
+        REQUIRE( square->getLocY() == (circle->getLocY() + circle->getHeight()/2 + square->getHeight()/2) );
         // and both bounding boxes are vertically aligned around their center.
         REQUIRE( triangle->getLocX() == square->getLocX() );
         REQUIRE( square->getLocX() == circle->getLocX() );
