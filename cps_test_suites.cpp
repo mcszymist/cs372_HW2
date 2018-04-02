@@ -262,6 +262,8 @@ TEST_CASE( "Compound Shape - Horizontal Shapes: Triangle Square Circle") {
         // The width of the resulting shape's bounding box is the sum of the widths of the component shapes.
         REQUIRE( horizontal->getWidth() == triangle->getWidth() + square->getWidth() + circle->getWidth() ); // This should be 60.)
         // Shape shapes[i+1]'s bounding box is located next to (to the right of) the bounding box of shapes[i]
+        REQUIRE( circle->getLocX() == (square->getLocX() + square->getWidth()/2 + circle->getWidth()/2) );
+        REQUIRE( square->getLocX() == (triangle->getLocX() + triangle->getWidth()/2 + square->getWidth()/2) );
         // and both bounding boxes are horizontally aligned around their center.
         REQUIRE( circle->getLocY() == square->getLocY() );
         REQUIRE( square->getLocY() == triangle->getLocY() );

@@ -118,6 +118,13 @@ public:
                 setHeight(shape->getHeight());
             setWidth(getWidth() + shape->getWidth());
         }
+
+        // Set coordinates for bounding boxes
+        for (std::size_t i = 1; i != shapes.size(); i++) { // Iterators didn't work so we're doing indices
+            auto shape = shapes[i];
+            auto prevShape = shapes[i-1];
+            shape->setCursor( (prevShape->getLocX() + ((prevShape->getWidth())/2) + (shape->getWidth()/2) ), prevShape->getLocY() );
+        };
     }
 
     string getPostscript() override;
