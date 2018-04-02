@@ -268,4 +268,8 @@ TEST_CASE( "Compound Shape - Horizontal Shapes: Triangle Square Circle") {
         REQUIRE( circle->getLocY() == square->getLocY() );
         REQUIRE( square->getLocY() == triangle->getLocY() );
     }
+
+    SECTION("PostScript") {
+    REQUIRE(horizontal->getPostscript()=="gsave 15 15 translate /W 5 def /H 5 def newpath W neg H neg moveto W H neg lineto 0 H lineto closepath stroke grestore gsave 30 15 translate /W 10 def /H 10 def newpath W neg H neg moveto W H neg lineto W H lineto W neg H lineto closepath stroke grestore gsave 55 15 translate 0 0 15 0 360 arc stroke grestore");
+    }
 }
