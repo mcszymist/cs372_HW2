@@ -112,10 +112,11 @@ public:
         for (auto shape : list)
             shapes.push_back(shape);
 
-        // Set height
+        // Set height and width
         for (auto shape : shapes) {
             if (getHeight() < shape->getHeight())
                 setHeight(shape->getHeight());
+            setWidth(getWidth() + shape->getWidth());
         }
     }
 
