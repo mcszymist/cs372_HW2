@@ -23,7 +23,11 @@ TEST_CASE("Simple Shape Construction: Min Circle", "[shapes]"){
 }
 
 TEST_CASE("Simple Shape: Extreme values", "[shapes]"){
-    
+    shared_ptr<Shape> shape(new Circle(500));
+    shape->setCursor(1,1);
+    REQUIRE(shape->getHeight()==1000);
+    REQUIRE(shape->getPostscript()=="0 0 500 0 360 arc");
+    REQUIRE(shape->finalize()=="gsave 1 1 translate 0 0 500 0 360 arc stroke grestore");
 }
 
 TEST_CASE("Simple Shape Construction: Circle", "[shapes]"){
@@ -193,3 +197,4 @@ TEST_CASE("All simple shapes to file","[files]"){
     }
     REQUIRE(fileSS.str() == ss.str());
 }
+
