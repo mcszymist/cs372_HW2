@@ -53,12 +53,20 @@ public:
     VerticalShape(initializer_list<shared_ptr<Shape>> list) {
         setHeight(0);   // HACK: Why is an empty VerticalShape starting with a height of 10?!
 
-        for (auto shape : list) {
+        // Populate vector
+        for (auto shape : list)
             shapes.push_back(shape);
+        
+        // Set height and width
+        for (auto shape : shapes ) {
             setHeight(getHeight() + shape->getHeight());
             if (getWidth() <  shape->getWidth())
                 setWidth(shape->getWidth());
         };
+
+        // Set coordinates for bounding boxes
+        for (auto shape : shapes )
+            shape->setCursor( getLocX(), shape->getLocY() );
     }
 
     string getPostscript() override;
