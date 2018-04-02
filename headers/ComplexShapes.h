@@ -57,7 +57,7 @@ public:
         return fx;
     }
 
-      double getFY(){
+    double getFY(){
         return fy;
     }
 };
