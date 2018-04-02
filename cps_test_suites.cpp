@@ -254,7 +254,7 @@ TEST_CASE( "Compound Shape - Horizontal Shapes: Triangle Square Circle") {
     square->setCursor(20,20);
     shared_ptr<Shape> circle(new Circle(15));   // Circles are radius*2 so this has a height and width of 30
     circle->setCursor(15,15);
-    shared_ptr<Shape> horizontal(new HorizontalShape( {circle, square, triangle} ));
+    shared_ptr<Shape> horizontal(new HorizontalShape( {triangle, square, circle} ));
 
     SECTION("Constructor") {    
         // The height of the resulting shape's bounding box is the maximum height of the heights of the component shapes.
@@ -263,5 +263,7 @@ TEST_CASE( "Compound Shape - Horizontal Shapes: Triangle Square Circle") {
         REQUIRE( horizontal->getWidth() == triangle->getWidth() + square->getWidth() + circle->getWidth() ); // This should be 60.)
         // Shape shapes[i+1]'s bounding box is located next to (to the right of) the bounding box of shapes[i]
         // and both bounding boxes are horizontally aligned around their center.
+        REQUIRE( circle->getLocY() == square->getLocY() );
+        REQUIRE( square->getLocY() == triangle->getLocY() );
     }
 }
