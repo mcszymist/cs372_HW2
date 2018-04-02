@@ -109,8 +109,11 @@ TEST_CASE( "Rotation: Triangle 270","[compoundShapes]") {
 
 TEST_CASE( "Compound Shape - Vertical Shapes: Triangle Square Circle") {
     shared_ptr<Shape> circle(new Circle(15));   // Circles are radius*2 so this has a height and width of 30
+    circle->setCursor(15,15);
     shared_ptr<Shape> square(new Square(20));
+    square->setCursor(20,20);
     shared_ptr<Shape> triangle(new Triangle(10));
+    triangle->setCursor(10,10);
     shared_ptr<Shape> vertical(new VerticalShape( {circle, square, triangle} ));
 
     SECTION("Constructor") {    
@@ -119,7 +122,8 @@ TEST_CASE( "Compound Shape - Vertical Shapes: Triangle Square Circle") {
         // The width of the resulting shape's bounding box is the maximum width of the widths of the component shapes.
         REQUIRE( vertical->getWidth() == max( max(triangle->getWidth(), square->getWidth()), circle->getWidth() ) );
         // Shape shapes[i+1]'s bounding box is located directly above the bounding box of shapes[i],
-
+        REQUIRE( triangle->getLocY() == (square->getLocY() + square->getHeight()/2) );
+        REQUIRE( square->getLocY() == (circle->getLocY() + circle->getHeight()/2) );
         // and both bounding boxes are vertically aligned around their center.
         REQUIRE( triangle->getLocX() == square->getLocX() );
         REQUIRE( square->getLocX() == circle->getLocX() );
