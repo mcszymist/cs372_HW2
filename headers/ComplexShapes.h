@@ -99,4 +99,21 @@ public:
     string getPostscript() override;
 };
 
+class HorizontalShape : public Shape{
+private:
+    vector<shared_ptr<Shape>> shapes;
+
+public:
+    HorizontalShape(initializer_list<shared_ptr<Shape>> list) {
+        setHeight(0);   // Initialize height
+        setWidth(0);    // Initialize width
+
+        // Populate vector
+        for (auto shape : list)
+            shapes.push_back(shape);
+    }
+
+    string getPostscript() override;
+};
+
 #endif

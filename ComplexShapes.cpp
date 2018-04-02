@@ -24,3 +24,7 @@ string VerticalShape::getPostscript() {
     ps.pop_back(); // Delete the last space!
     return ps;
 }
+
+string HorizontalShape::getPostscript() {
+    return "I'M A STRING!";
+}

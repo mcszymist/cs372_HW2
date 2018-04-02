@@ -220,7 +220,7 @@ TEST_CASE("All simple shapes to file","[files]"){
     REQUIRE(fileSS.str() == ss.str());
 }
 
-TEST_CASE( "Compound Shape - Vertical Shapes: Triangle Square Circle") {
+TEST_CASE( "Compound Shape - Vertical Shapes: Circle Square Triangle") {
     shared_ptr<Shape> circle(new Circle(15));   // Circles are radius*2 so this has a height and width of 30
     circle->setCursor(15,15);
     shared_ptr<Shape> square(new Square(20));
@@ -244,5 +244,23 @@ TEST_CASE( "Compound Shape - Vertical Shapes: Triangle Square Circle") {
 
     SECTION("PostScript") {
         REQUIRE(vertical->getPostscript()=="gsave 15 15 translate 0 0 15 0 360 arc stroke grestore gsave 15 40 translate /W 10 def /H 10 def newpath W neg H neg moveto W H neg lineto W H lineto W neg H lineto closepath stroke grestore gsave 15 55 translate /W 5 def /H 5 def newpath W neg H neg moveto W H neg lineto 0 H lineto closepath stroke grestore");
+    }
+}
+
+TEST_CASE( "Compound Shape - Horizontal Shapes: Triangle Square Circle") {
+    shared_ptr<Shape> triangle(new Triangle(10));
+    triangle->setCursor(10,10);
+    shared_ptr<Shape> square(new Square(20));
+    square->setCursor(20,20);
+    shared_ptr<Shape> circle(new Circle(15));   // Circles are radius*2 so this has a height and width of 30
+    circle->setCursor(15,15);
+    shared_ptr<Shape> horizontal(new HorizontalShape( {circle, square, triangle} ));
+
+    SECTION("Constructor") {    
+        // The height of the resulting shape's bounding box is the maximum height of the heights of the component shapes.
+        REQUIRE( horizontal->getHeight() == max( max(triangle->getHeight(), square->getHeight()), circle->getHeight() ) );
+        // The width of the resulting shape's bounding box is the sum of the widths of the component shapes.
+        // Shape shapes[i+1]'s bounding box is located next to (to the right of) the bounding box of shapes[i]
+        // and both bounding boxes are horizontally aligned around their center.
     }
 }
