@@ -68,6 +68,37 @@ public:
     }
 };
 
+class Layered : public Shape{
+private:
+  
+    vector<shared_ptr<Shape>> shapes;
+
+public:
+    Layered(initializer_list<shared_ptr<Shape>> list) {
+        setHeight(0);   // Initialize height
+        setWidth(0);    // Initialize wid
+         // Populate vector
+        for (auto shape : list)
+            shapes.push_back(shape);
+
+        auto startShape = shapes[0];
+        
+        for (auto shape: shapes) {
+            if (getHeight() < shape->getWidth()) {
+                setHeight(shape->getHeight());
+            }
+            if (getWidth() < shape->getWidth()){
+                setWidth(shape->getWidth());
+            }
+
+            shape->setCursor(startShape->getLocX(), startShape->getLocY());
+            
+        }
+    }
+    
+    string getPostscript() override;
+};
+
 class VerticalShape : public Shape{
 private:
     vector<shared_ptr<Shape>> shapes;
@@ -99,39 +130,35 @@ public:
     string getPostscript() override;
 };
 
-
-class Layered : public Shape{
+class HorizontalShape : public Shape{
 private:
-  
     vector<shared_ptr<Shape>> shapes;
 
 public:
-    Layered(initializer_list<shared_ptr<Shape>> list) {
+    HorizontalShape(initializer_list<shared_ptr<Shape>> list) {
         setHeight(0);   // Initialize height
-        setWidth(0);    // Initialize wid
-         // Populate vector
+        setWidth(0);    // Initialize width
+
+        // Populate vector
         for (auto shape : list)
             shapes.push_back(shape);
 
-        auto startShape = shapes[0];
-        
-        for (auto shape: shapes) {
-            if (getHeight() < shape->getWidth()) {
+        // Set height and width
+        for (auto shape : shapes) {
+            if (getHeight() < shape->getHeight())
                 setHeight(shape->getHeight());
-            }
-            if (getWidth() < shape->getWidth()){
-                setWidth(shape->getWidth());
-            }
-
-            shape->setCursor(startShape->getLocX(), startShape->getLocY());
-            
+            setWidth(getWidth() + shape->getWidth());
         }
+
+        // Set coordinates for bounding boxes
+        for (std::size_t i = 1; i != shapes.size(); i++) { // Iterators didn't work so we're doing indices
+            auto shape = shapes[i];
+            auto prevShape = shapes[i-1];
+            shape->setCursor( (prevShape->getLocX() + ((prevShape->getWidth())/2) + (shape->getWidth()/2) ), prevShape->getLocY() );
+        };
     }
-    
 
     string getPostscript() override;
-
-  
 };
 
 #endif
