@@ -83,4 +83,4 @@ run: cps_main
 	./$(OUT_FILE)
 
 clean:
-	rm $(MAIN_OBJ) $(TESTMAIN_OBJ) $(OBJ_FILES) $(TESTS_OBJ) *.out
+	rm $(MAIN_OBJ) $(TESTMAIN_OBJ) $(OBJ_FILES) $(TESTS_OBJ) *.out ps.ps
