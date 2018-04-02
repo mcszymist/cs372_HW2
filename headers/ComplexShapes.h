@@ -75,6 +75,7 @@ private:
 public:
     VerticalShape(initializer_list<shared_ptr<Shape>> list) {
         setHeight(0);   // Initialize height
+        setWidth(0);    // Initialize width
 
         // Populate vector
         for (auto shape : list)
@@ -83,7 +84,7 @@ public:
         // Set height and width
         for (auto shape : shapes ) {
             setHeight(getHeight() + shape->getHeight());
-            if (getWidth() <  shape->getWidth())
+            if (getWidth() < shape->getWidth())
                 setWidth(shape->getWidth());
         };
 

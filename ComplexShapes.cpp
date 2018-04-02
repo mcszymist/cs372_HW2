@@ -17,5 +17,10 @@ string Scaled::getPostscript(){
 }
 
 string VerticalShape::getPostscript() {
-    return "TRIANGLE SQUARE CIRCLE";
+    stringstream ss;
+    for (auto shape : shapes )
+        ss << shape->finalize() << " ";
+    string ps = ss.str();
+    ps.pop_back(); // Delete the last space!
+    return ps;
 }
