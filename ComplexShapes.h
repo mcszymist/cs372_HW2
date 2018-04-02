@@ -51,7 +51,7 @@ private:
 
 public:
     VerticalShape(initializer_list<shared_ptr<Shape>> list) {
-        setHeight(0);   // HACK: Why is an empty VerticalShape starting with a height of 10?!
+        setHeight(0);   // Initialize height
 
         // Populate vector
         for (auto shape : list)
@@ -65,8 +65,11 @@ public:
         };
 
         // Set coordinates for bounding boxes
-        for (auto shape : shapes )
-            shape->setCursor( getLocX(), shape->getLocY() );
+        for (std::size_t i = 1; i != shapes.size(); i++) { // Iterators didn't work so we're doing indices
+            auto shape = shapes[i];
+            auto prevShape = shapes[i-1];
+            shape->setCursor( prevShape->getLocX() , (prevShape->getLocY() + ((prevShape->getHeight())/2) + (shape->getHeight()/2) ) );
+        };
     }
 
     string getPostscript() override;
