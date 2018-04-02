@@ -145,9 +145,7 @@ TEST_CASE("Rotation: Multiply times","[compoundShapes]"){
     shared_ptr<Shape> rotated4(new Rotated(rotated3, angle));
     shared_ptr<Shape> rotated5(new Rotated(rotated4, angle));
     REQUIRE(rotated5->getPostscript()=="270 rotate 270 rotate 270 rotate 270 rotate 270 rotate /W 5 def /H 5 def newpath W neg H neg moveto W H neg lineto 0 H lineto closepath");
-
 }
-
 
 TEST_CASE("Unique Shape: Circle with Arcs", "[uniqueShapes]") {
     shared_ptr<Shape> shape(new CircleWithArcs(10));
@@ -303,4 +301,32 @@ TEST_CASE( "Compound Shape - Horizontal Shapes: Triangle Square Circle") {
     SECTION("PostScript") {
     REQUIRE(horizontal->getPostscript()=="gsave 15 15 translate /W 5 def /H 5 def newpath W neg H neg moveto W H neg lineto 0 H lineto closepath stroke grestore gsave 30 15 translate /W 10 def /H 10 def newpath W neg H neg moveto W H neg lineto W H lineto W neg H lineto closepath stroke grestore gsave 55 15 translate 0 0 15 0 360 arc stroke grestore");
     }
+}
+
+TEST_CASE("Rotation of Horizontal shapes","[Rotation]"){
+    shared_ptr<Shape> shape(new Triangle(10,5,5));
+    shared_ptr<Shape> shape1(new Triangle(10,5,5));
+    Rotation angle(270);
+    shared_ptr<Shape> horizontal(new HorizontalShape({shape,shape1}));
+    shared_ptr<Shape> rotated(new Rotated(horizontal, angle));
+    REQUIRE(rotated->getHeight()==horizontal->getWidth());
+    REQUIRE(rotated->getPostscript()==("270 rotate "+horizontal->getPostscript()));
+}
+TEST_CASE("Rotation of Vertical shapes","[Rotation]"){
+    shared_ptr<Shape> shape(new Triangle(10,5,5));
+    shared_ptr<Shape> shape1(new Triangle(10,5,5));
+    Rotation angle(270);
+    shared_ptr<Shape> vertical(new VerticalShape({shape,shape1}));
+    shared_ptr<Shape> rotated(new Rotated(vertical, angle));
+    REQUIRE(rotated->getHeight()==vertical->getWidth());
+    REQUIRE(rotated->getPostscript()==("270 rotate "+vertical->getPostscript()));
+}
+TEST_CASE("Rotation of Layered shapes","[Rotation]"){
+    shared_ptr<Shape> shape(new Triangle(10,5,5));
+    shared_ptr<Shape> shape1(new Triangle(10,5,5));
+    Rotation angle(270);
+    shared_ptr<Shape> layered(new Layered({shape,shape1}));
+    shared_ptr<Shape> rotated(new Rotated(layered, angle));
+    REQUIRE(rotated->getHeight()==layered->getWidth());
+    REQUIRE(rotated->getPostscript()==("270 rotate "+layered->getPostscript()));
 }
