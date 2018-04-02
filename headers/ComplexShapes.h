@@ -68,6 +68,37 @@ public:
     }
 };
 
+class Layered : public Shape{
+private:
+  
+    vector<shared_ptr<Shape>> shapes;
+
+public:
+    Layered(initializer_list<shared_ptr<Shape>> list) {
+        setHeight(0);   // Initialize height
+        setWidth(0);    // Initialize wid
+         // Populate vector
+        for (auto shape : list)
+            shapes.push_back(shape);
+
+        auto startShape = shapes[0];
+        
+        for (auto shape: shapes) {
+            if (getHeight() < shape->getWidth()) {
+                setHeight(shape->getHeight());
+            }
+            if (getWidth() < shape->getWidth()){
+                setWidth(shape->getWidth());
+            }
+
+            shape->setCursor(startShape->getLocX(), startShape->getLocY());
+            
+        }
+    }
+    
+    string getPostscript() override;
+};
+
 class VerticalShape : public Shape{
 private:
     vector<shared_ptr<Shape>> shapes;

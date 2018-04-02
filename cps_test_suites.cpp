@@ -220,6 +220,36 @@ TEST_CASE("All simple shapes to file","[files]"){
     REQUIRE(fileSS.str() == ss.str());
 }
 
+TEST_CASE( "Compound Shape - Layered Shapes: Triangle Square Circle") {
+    shared_ptr<Shape> circle(new Circle(15));   // Circles are radius*2 so this has a height and width of 30
+    circle->setCursor(15,15);
+    shared_ptr<Shape> square(new Square(20));
+    square->setCursor(20,20);
+    shared_ptr<Shape> triangle(new Triangle(10));
+    triangle->setCursor(10,10);
+    shared_ptr<Shape> layered(new Layered( {circle, square, triangle} ));
+
+    SECTION("Constructor") {    
+
+        REQUIRE(circle->getLocY() == 15);
+        REQUIRE(circle->getLocX() == 15);
+        // The height of the resulting shape's bounding box is the maximum of the heights of the component shapes.
+         REQUIRE( layered->getHeight() == max( max(triangle->getHeight(), square->getHeight()), circle->getHeight() ) );
+        // The width of the resulting shape's bounding box is the maximum width of the widths of the component shapes.
+        REQUIRE( layered->getWidth() == max( max(triangle->getWidth(), square->getWidth()), circle->getWidth() ) );
+        // Shape shapes[i+1]'s bounding box is located directly above the bounding box of shapes[i],
+        REQUIRE( triangle->getLocY() == circle->getLocY());
+        REQUIRE( triangle->getLocX() == circle->getLocX());
+        REQUIRE( square->getLocY() == circle->getLocY());
+        REQUIRE( square->getLocX() == square->getLocY());
+        
+    }
+
+    SECTION("PostScript") {
+         REQUIRE(layered->getPostscript()=="gsave 15 15 translate 0 0 15 0 360 arc stroke grestore gsave 15 15 translate /W 10 def /H 10 def newpath W neg H neg moveto W H neg lineto W H lineto W neg H lineto closepath stroke grestore gsave 15 15 translate /W 5 def /H 5 def newpath W neg H neg moveto W H neg lineto 0 H lineto closepath stroke grestore");
+    }
+}
+
 TEST_CASE( "Compound Shape - Vertical Shapes: Circle Square Triangle") {
     shared_ptr<Shape> circle(new Circle(15));   // Circles are radius*2 so this has a height and width of 30
     circle->setCursor(15,15);
