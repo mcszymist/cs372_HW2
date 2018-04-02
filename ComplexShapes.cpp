@@ -12,7 +12,7 @@ string Rotated::getPostscript(){
 
 string Scaled::getPostscript(){
     stringstream ss;
-    ss << shape->getPostscript() << " " << getFX() << " "<< getFY() << " scaled";
+    ss << shape->getPostscript() << " " << getFX() << " "<< getFY() << " scale";
     return ss.str();
 }
 
