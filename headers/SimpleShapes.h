@@ -11,6 +11,13 @@ private:
 public:
     Circle(double r) : radius(r){
         setHeight(r*2);
+        setWidth(r*2);
+        setCursor(0,0);
+    }
+    Circle(double r,int x,int y) : radius(r){
+        setHeight(r*2);
+        setWidth(r*2);
+        setCursor(x,y);
     }
     string getPostscript() override;
 };
@@ -19,6 +26,12 @@ public:
     Triangle(int h){
         setHeight(h);
         setWidth(h);
+        setCursor(0,0);
+    }
+    Triangle(int h,int x,int y){
+        setHeight(h);
+        setWidth(h);
+        setCursor(x,y);
     }
     string getPostscript() override;
 };
@@ -29,6 +42,12 @@ public:
     Polygon(int s,int h) : sides(s){
         setHeight(h);
         setWidth(h);
+        setCursor(0,0);
+    }
+    Polygon(int s,int h,int x,int y) : sides(s){
+        setHeight(h);
+        setWidth(h);
+        setCursor(x,y);
     }
     string getPostscript() override;
 };
@@ -37,6 +56,12 @@ public:
     Square(int h){
         setHeight(h);
         setWidth(h);
+        setCursor(0,0);
+    }
+    Square(int h,int x,int y){
+        setHeight(h);
+        setWidth(h);
+        setCursor(x,y);
     }
     string getPostscript() override;
 };
@@ -45,6 +70,12 @@ public:
     Rectangle(int w,int h){
         setHeight(h);
         setWidth(w);
+        setCursor(0,0);
+    }
+    Rectangle(int w,int h,int x,int y){
+        setHeight(h);
+        setWidth(w);
+        setCursor(x,y);
     }
     string getPostscript() override;
 };
@@ -53,6 +84,12 @@ public:
     Spacer(int w,int h){
         setHeight(h);
         setWidth(w);
+        setCursor(0,0);
+    }
+    Spacer(int w,int h,int x,int y){
+        setHeight(h);
+        setWidth(w);
+        setCursor(x,y);
     }
     string getPostscript() override;
 };

@@ -45,6 +45,29 @@ public:
     string getPostscript() override;
 };
 
+class Scaled : public Shape{
+private:
+    double fx;
+    double fy;
+    shared_ptr<Shape> shape;
+
+public:
+    Scaled(shared_ptr<Shape> s, double _fx, double _fy) : fx(_fx), fy(_fy), shape(s){
+        setWidth(s->getWidth());
+        setHeight(s->getHeight());
+        setCursor(s->getLocX(),s->getLocY());
+    }
+    string getPostscript() override;
+
+    double getFX(){
+        return fx;
+    }
+
+      double getFY(){
+        return fy;
+    }
+};
+
 class VerticalShape : public Shape{
 private:
     vector<shared_ptr<Shape>> shapes;

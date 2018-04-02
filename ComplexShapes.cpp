@@ -2,7 +2,7 @@
 using std::string;
 #include <sstream>
 using std::stringstream;
-#include "ComplexShapes.h"
+#include "headers/ComplexShapes.h"
 
 string Rotated::getPostscript(){
     stringstream ss;
@@ -10,6 +10,12 @@ string Rotated::getPostscript(){
     return ss.str();
 }
 
-string VerticalShape::getPostscript(){
+string Scaled::getPostscript(){
+    stringstream ss;
+    ss << shape->getPostscript() << " " << getFX() << " "<< getFY() << " scaled";
+    return ss.str();
+}
+
+string VerticalShape::getPostscript() {
     return "TRIANGLE SQUARE CIRCLE";
 }
