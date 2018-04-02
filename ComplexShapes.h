@@ -56,6 +56,8 @@ public:
         for (auto shape : list) {
             shapes.push_back(shape);
             setHeight(getHeight() + shape->getHeight());
+            if (getWidth() <  shape->getWidth())
+                setWidth(shape->getWidth());
         };
     }
 
