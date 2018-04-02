@@ -163,6 +163,6 @@ TEST_CASE( "Compound Shape - Vertical Shapes: Triangle Square Circle") {
     }
 
     SECTION("PostScript") {
-        REQUIRE(vertical->getPostscript()=="TRIANGLE SQUARE CIRCLE");
+        REQUIRE(vertical->getPostscript()=="gsave 15 15 translate 0 0 15 0 360 arc stroke grestore gsave 15 40 translate /W 10 def /H 10 def newpath W neg H neg moveto W H neg lineto W H lineto W neg H lineto closepath stroke grestore gsave 15 55 translate /W 5 def /H 5 def newpath W neg H neg moveto W H neg lineto 0 H lineto closepath stroke grestore");
     }
 }
