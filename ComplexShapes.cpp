@@ -15,3 +15,12 @@ string Scaled::getPostscript(){
     ss << shape->getPostscript() << " " << getFX() << " "<< getFY() << " scale";
     return ss.str();
 }
+
+string VerticalShape::getPostscript() {
+    stringstream ss;
+    for (auto shape : shapes )
+        ss << shape->finalize() << " ";
+    string ps = ss.str();
+    ps.pop_back(); // Delete the last space!
+    return ps;
+}
