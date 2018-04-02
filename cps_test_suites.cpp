@@ -160,7 +160,10 @@ TEST_CASE ("Scaled Shape to certain dimensions" ,"[compoundShapes]") {
     shared_ptr<Shape> shape(new Triangle(10));
     shape->setCursor(5,5);
     shared_ptr<Shape> scaled1(new Scaled(shape, 1.0,2.0));
-    REQUIRE(scaled1->getPostscript() == "/W 5 def /H 5 def newpath W neg H neg moveto W H neg lineto 0 H lineto closepath 1 2 scaled");
+    REQUIRE(scaled1->getPostscript() == "/W 5 def /H 5 def newpath W neg H neg moveto W H neg lineto 0 H lineto closepath 1 2 scale");
+    REQUIRE(scaled1->finalize() == "gsave 5 5 translate /W 5 def /H 5 def newpath W neg H neg moveto W H neg lineto 0 H lineto closepath 1 2 scale stroke grestore");
+
+    
 }
 
 TEST_CASE("file ps test","[files]"){
