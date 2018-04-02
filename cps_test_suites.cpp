@@ -259,6 +259,7 @@ TEST_CASE( "Compound Shape - Layered Shapes: Triangle Square Circle") {
     SECTION("Constructor") {    
 
         REQUIRE(circle->getLocY() == 15);
+        REQUIRE(circle->getLocX() == 15);
         // The height of the resulting shape's bounding box is the maximum of the heights of the component shapes.
          REQUIRE( layered->getHeight() == max( max(triangle->getHeight(), square->getHeight()), circle->getHeight() ) );
         // The width of the resulting shape's bounding box is the maximum width of the widths of the component shapes.
