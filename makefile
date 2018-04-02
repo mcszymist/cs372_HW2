@@ -31,7 +31,11 @@ OBJ_FILES_WITH_MAIN=$(OBJ_FILES) $(MAIN_OBJ)
 
 OUT_FILE= PS_Translator.out
 
-all: $(OUT_FILE)
+TEST_OUT_FILE=tests.out
+
+all: $(TEST_OUT_FILE) $(OUT_FILE) 
+
+cps_main: $(OUT_FILE)
 
 $(OUT_FILE): $(OBJ_FILES_WITH_MAIN)
 	$(CMP) -o $(OUT_FILE) $(OBJ_FILES_WITH_MAIN)
@@ -63,7 +67,7 @@ $(TESTS_OBJ): $(TESTS).cpp
 
 #For making and running tests
 
-TEST_OUT_FILE=tests.out
+
 
 TEST_OBJ_FILES=$(TESTMAIN_OBJ) $(OBJ_FILES) $(TESTS_OBJ)
 
@@ -75,7 +79,7 @@ $(TEST_OUT_FILE): $(TEST_OBJ_FILES)
 tests-run: tests
 	./$(TEST_OUT_FILE) $1
 
-run: all
+run: cps_main
 	./$(OUT_FILE)
 
 clean:
