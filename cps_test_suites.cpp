@@ -162,8 +162,8 @@ TEST_CASE ("Scaled Shape to certain dimensions" ,"[compoundShapes]") {
     shared_ptr<Shape> shape(new Triangle(10));
     shape->setCursor(5,5);
     shared_ptr<Shape> scaled1(new Scaled(shape, 1.0,2.0));
-    REQUIRE(scaled1->getPostscript() == "/W 5 def /H 5 def newpath W neg H neg moveto W H neg lineto 0 H lineto closepath 1 2 scale");
-    REQUIRE(scaled1->finalize() == "gsave 5 5 translate /W 5 def /H 5 def newpath W neg H neg moveto W H neg lineto 0 H lineto closepath 1 2 scale stroke grestore");
+    REQUIRE(scaled1->getPostscript() == "1 2 scale /W 5 def /H 5 def newpath W neg H neg moveto W H neg lineto 0 H lineto closepath");
+    REQUIRE(scaled1->finalize() == "gsave 5 5 translate 1 2 scale /W 5 def /H 5 def newpath W neg H neg moveto W H neg lineto 0 H lineto closepath stroke grestore");
 
     
 }
@@ -352,4 +352,20 @@ TEST_CASE("Rotation of Layered shapes","[Rotation]"){
     shared_ptr<Shape> rotated(new Rotated(layered, angle));
     REQUIRE(rotated->getHeight()==layered->getWidth());
     REQUIRE(rotated->getPostscript()==("270 rotate "+layered->getPostscript()));
+}
+TEST_CASE("SUPER SHAPE 9000!","[extremeShapes]"){
+    vector<shared_ptr<Shape>> allShapes;
+    shared_ptr<Shape> shape(new Triangle(10));
+    shared_ptr<Shape> shape1(new Circle(10));
+    shared_ptr<Shape> vertical(new VerticalShape({shape,shape1}));
+    shared_ptr<Shape> shape2(new Square(10));
+    shared_ptr<Shape> shape3(new Polygon(6,10));
+    shared_ptr<Shape> shape4(new Rectangle(6,10));
+    shared_ptr<Shape> horizontal(new HorizontalShape({vertical,shape2,shape3,shape4}));
+    Rotation angle(270);
+    shared_ptr<Shape> rotated(new Rotated(horizontal,angle));
+    shared_ptr<Shape> scaled(new Scaled(rotated,10,10));
+    scaled->setCursor(200,200);
+    allShapes.push_back(scaled);
+    makePostscriptFile(allShapes,"ps2");
 }
