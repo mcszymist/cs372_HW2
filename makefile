@@ -29,7 +29,7 @@ CPP_FILES=$(CPS).cpp $(SHAPE).cpp $(SIMPLESHAPES).cpp $(COMPLEXSHAPES).cpp \
 
 OBJ_FILES_WITH_MAIN=$(OBJ_FILES) $(MAIN_OBJ)
 
-OUT_FILE= PS_Translator.out
+OUT_FILE= psTranslator.out
 
 TEST_OUT_FILE=tests.out
 
