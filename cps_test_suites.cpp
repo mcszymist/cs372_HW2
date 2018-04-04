@@ -61,7 +61,7 @@ TEST_CASE("Simple Shape Construction: Polygon", "[shapes]"){
     shared_ptr<Shape> shape(new Polygon(5,10));
     shape->setCursor(100,100);
     REQUIRE(shape->getHeight()==10);
-    REQUIRE(shape->getPostscript()=="/S 5 def /H 10 def /A 360 S div def A cos H mul H sub A sin H mul 0 sub atan rotate -90 rotate H 0 moveto S{ A cos H mul A sin H mul lineto /A A 360 S div add def } repeat closepath");
+    REQUIRE(shape->getPostscript()=="/S 5 def /H 5 def /A 360 S div def A cos H mul H sub A sin H mul 0 sub atan rotate -90 rotate H 0 moveto S{ A cos H mul A sin H mul lineto /A A 360 S div add def } repeat closepath");
     REQUIRE(shape->finalize()=="gsave 100 100 translate /S 5 def /H 5 def /A 360 S div def A cos H mul H sub A sin H mul 0 sub atan rotate -90 rotate H 0 moveto S{ A cos H mul A sin H mul lineto /A A 360 S div add def } repeat closepath stroke grestore");
 }
 
@@ -359,12 +359,12 @@ TEST_CASE("SUPER SHAPE 9000!","[extremeShapes]"){
     shared_ptr<Shape> shape1(new Circle(10));
     shared_ptr<Shape> vertical(new VerticalShape({shape,shape1}));
     shared_ptr<Shape> shape2(new Square(10));
-    shared_ptr<Shape> shape3(new Polygon(6,10));
+    shared_ptr<Shape> shape3(new Polygon(6,100));
     shared_ptr<Shape> shape4(new Rectangle(6,10));
     shared_ptr<Shape> horizontal(new HorizontalShape({vertical,shape2,shape3,shape4}));
     Rotation angle(270);
     shared_ptr<Shape> rotated(new Rotated(horizontal,angle));
-    shared_ptr<Shape> scaled(new Scaled(rotated,10,10));
+    shared_ptr<Shape> scaled(new Scaled(rotated,1,1));
     scaled->setCursor(200,200);
     allShapes.push_back(scaled);
     makePostscriptFile(allShapes,"ps2");
