@@ -16,25 +16,7 @@ string Scaled::getPostscript(){
     return ss.str();
 }
 
-string Layered::getPostscript() {
-    stringstream ss;
-    for (auto shape : shapes )
-        ss << shape->finalize() << " ";
-    string ps = ss.str();
-    ps.pop_back(); // Delete the last space!
-    return ps;
-}
-
-string VerticalShape::getPostscript() {
-    stringstream ss;
-    for (auto shape : shapes )
-        ss << shape->finalize() << " ";
-    string ps = ss.str();
-    ps.pop_back(); // Delete the last space!
-    return ps;
-}
-
-string HorizontalShape::getPostscript() {
+string ComplexShapes::getPostscript() {
     stringstream ss;
     for (auto shape : shapes )
         ss << shape->finalize() << " ";

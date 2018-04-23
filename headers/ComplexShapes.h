@@ -11,6 +11,11 @@ using std::initializer_list;
 
 #include "Shape.h"
 
+class ComplexShapes : public Shape{
+public:
+    vector<shared_ptr<Shape>> shapes;
+    string getPostscript() override;
+};
 
 class Rotation{
 private:
@@ -74,11 +79,7 @@ public:
     }
 };
 
-class Layered : public Shape{
-private:
-  
-    vector<shared_ptr<Shape>> shapes;
-
+class Layered : public ComplexShapes{
 public:
     Layered(initializer_list<shared_ptr<Shape>> list) {
          // Populate vector
@@ -99,14 +100,9 @@ public:
             
         }
     }
-    
-    string getPostscript() override;
 };
 
-class VerticalShape : public Shape{
-private:
-    vector<shared_ptr<Shape>> shapes;
-
+class VerticalShape : public ComplexShapes{
 public:
     VerticalShape(initializer_list<shared_ptr<Shape>> list) {
         // Populate vector
@@ -127,14 +123,9 @@ public:
             shape->setCursor( prevShape->getLocX() , (prevShape->getLocY() + ((prevShape->getHeight())/2) + (shape->getHeight()/2) ) );
         };
     }
-
-    string getPostscript() override;
 };
 
-class HorizontalShape : public Shape{
-private:
-    vector<shared_ptr<Shape>> shapes;
-
+class HorizontalShape : public ComplexShapes{
 public:
     HorizontalShape(initializer_list<shared_ptr<Shape>> list) {
         // Populate vector
@@ -147,7 +138,6 @@ public:
                 setHeight(shape->getHeight());
             setWidth(getWidth() + shape->getWidth());
         }
-
         // Set coordinates for bounding boxes
         for (std::size_t i = 1; i != shapes.size(); i++) { // Iterators didn't work so we're doing indices
             auto shape = shapes[i];
@@ -155,8 +145,6 @@ public:
             shape->setCursor( (prevShape->getLocX() + ((prevShape->getWidth())/2) + (shape->getWidth()/2) ), prevShape->getLocY() );
         };
     }
-
-    string getPostscript() override;
 };
 
 #endif
