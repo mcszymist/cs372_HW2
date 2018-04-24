@@ -14,10 +14,10 @@ using std::initializer_list;
 class ComplexShapes : public Shape{
 public:
     vector<shared_ptr<Shape>> shapes;
-    void fillVector(initializer_list<shared_ptr<Shape>> list);
-    void setUp(std::function<int()> getter,std::function<void(int)> setter);
+    void fillVars(initializer_list<shared_ptr<Shape>> list);
     virtual void calculateCompoundSize(shared_ptr<Shape> shape) = 0;
     virtual void calculateBiggestSize(shared_ptr<Shape> shape) = 0;
+	virtual void setPos() = 0;
     string getPostscript() override;
 };
 
@@ -86,58 +86,31 @@ public:
 class Layered : public ComplexShapes{
 public:
     Layered(initializer_list<shared_ptr<Shape>> list) {
-         // Populate vector
-        fillVector(list);
-        auto startShape = shapes[0];
-        
-        for (auto shape: shapes) {
-            if (getHeight() < shape->getWidth()) {
-                setHeight(shape->getHeight());
-            }
-            if (getWidth() < shape->getWidth()){
-                setWidth(shape->getWidth());
-            }
-
-            shape->setCursor(startShape->getLocX(), startShape->getLocY());
-            
-        }
+        fillVars(list);
     }
     void calculateBiggestSize(shared_ptr<Shape> shape) override;
     void calculateCompoundSize(shared_ptr<Shape> shape) override;
+	void setPos() override;
 };
 
 class VerticalShape : public ComplexShapes{
 public:
     VerticalShape(initializer_list<shared_ptr<Shape>> list) {
-        // Populate vector
-        fillVector(list);
-
-        // Set coordinates for bounding boxes
-        for (std::size_t i = 1; i != shapes.size(); i++) { // Iterators didn't work so we're doing indices
-            auto shape = shapes[i];
-            auto prevShape = shapes[i-1];
-            shape->setCursor( prevShape->getLocX() , (prevShape->getLocY() + ((prevShape->getHeight())/2) + (shape->getHeight()/2) ) );
-        };
+        fillVars(list);
     }
     void calculateBiggestSize(shared_ptr<Shape> shape) override;
     void calculateCompoundSize(shared_ptr<Shape> shape) override;
+	void setPos() override;
 };
 
 class HorizontalShape : public ComplexShapes{
 public:
     HorizontalShape(initializer_list<shared_ptr<Shape>> list) {
-        // Populate vector
-        fillVector(list);
-
-        // Set coordinates for bounding boxes
-        for (std::size_t i = 1; i != shapes.size(); i++) { // Iterators didn't work so we're doing indices
-            auto shape = shapes[i];
-            auto prevShape = shapes[i-1];
-            shape->setCursor( (prevShape->getLocX() + ((prevShape->getWidth())/2) + (shape->getWidth()/2) ), prevShape->getLocY() );
-        };
+        fillVars(list);
     }
     void calculateBiggestSize(shared_ptr<Shape> shape) override;
     void calculateCompoundSize(shared_ptr<Shape> shape) override;
+	void setPos() override;
 };
 
 #endif
