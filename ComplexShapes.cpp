@@ -24,3 +24,22 @@ string ComplexShapes::getPostscript() {
     ps.pop_back(); // Delete the last space!
     return ps;
 }
+void ComplexShapes::fillVector(initializer_list<shared_ptr<Shape>> list){
+    for (auto shape : list)
+        shapes.push_back(shape);
+        calculateCompoundSize(shape);
+        calculateBiggestSize(shape);
+    return;
+}
+
+void Layered::calculateBiggestSize(shared_ptr<Shape> shape){
+    if (getHeight() < shape->getHeight()) {
+        setHeight(shape->getHeight());
+    }
+    if (getWidth() < shape->getWidth()){
+        setWidth(shape->getWidth());
+    }
+};
+void Layered::calculateCompoundSize(shared_ptr<Shape> shape){
+    
+};
