@@ -1,6 +1,11 @@
 # 372-Project-2
 CPS to PostScript translator
 
+Tyler J Roberts
+Samuel Grenon
+Daune Shaffer
+Corey Gray
+
 Our program is used on the command line compiled using a makefile.
 
 Makefile commands:
